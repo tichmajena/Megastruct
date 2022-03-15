@@ -1,6 +1,6 @@
 <script context="module">
   export const load = async ({ fetch }) => {
-    const res = await fetch("/team.json");
+    const res = await fetch("/project.json");
 
     console.log(res);
 
@@ -23,8 +23,11 @@
 
 <script>
   export let teams;
+  console.log(teams);
 </script>
 
-<div>
-  {teams.title.rendered}
+<div class="bg-transparent">
+  {#each teams as team}
+    {team.title.rendered}
+  {/each}
 </div>

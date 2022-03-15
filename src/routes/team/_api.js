@@ -2,11 +2,6 @@ export const BASE = import.meta.env.VITE_BASE;
 const base = BASE;
 
 export async function getJSON(request, resource, data) {
-  // user must have a cookie set
-  //   if (!request.context.userid) {
-  //     return { status: 401 };
-  //   }
-
   const res = await fetch(`${base}/${resource}`, {
     method: request.method,
     headers: {
@@ -17,7 +12,7 @@ export async function getJSON(request, resource, data) {
 
   if (
     res.ok &&
-    request.method !== "GET" &&
+    request.request.method !== "GET" &&
     request.headers.accept !== "application/json"
   ) {
     return {

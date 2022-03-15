@@ -1,6 +1,6 @@
 <script context="module">
   export const load = async ({ fetch }) => {
-    const res = await fetch("/service.json");
+    const res = await fetch("/project.json");
 
     console.log(res);
 
@@ -23,8 +23,11 @@
 
 <script>
   export let services;
+  console.log(services);
 </script>
 
 <div>
-  {services.title.rendered}
+  {#each services as service}
+    {service.title.rendered}
+  {/each}
 </div>

@@ -2,8 +2,6 @@ export const BASE = import.meta.env.VITE_BASE;
 const base = BASE;
 
 export async function getJSON(request, resource, data) {
-
-
   const res = await fetch(`${base}/${resource}`, {
     method: request.method,
     headers: {
@@ -12,7 +10,6 @@ export async function getJSON(request, resource, data) {
     body: data && JSON.stringify(data),
   });
 
- 
   if (
     res.ok &&
     request.request.method !== "GET" &&
