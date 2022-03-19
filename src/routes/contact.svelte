@@ -26,8 +26,6 @@
     subject: "From Megastruct Website",
   };
 
-
-
   let apiURL =
     "https://www.megastruct.co.zw/cms/wp-json/contact-form-7/v1/contact-forms/4/feedback";
 
@@ -84,9 +82,9 @@
       <h2 class="text-gray-900 text-xl mb-3 font-medium title-font">
         Get intouch
       </h2>
-      <p class="leading-relaxed text-gray-600" />
+      <p class="leading-relaxed text-gray-600"></p>
       <div class="mb-3">
-        <div />
+        <div></div>
         <div class="flex">
           <div class="h-4 w-4 pt-1">
             <!-- <img src={phone_ic} loading="lazy" alt="" class="w-full" /> -->
@@ -135,6 +133,36 @@
             >
           </div>
         </div>
+        <button
+          on:click="{sendForm}"
+          class:bg-brandblue="{ready}"
+          class:bg-green-600="{success}"
+          class:bg-red-600="{failed}"
+          class:bg-yellow-600="{sending}"
+          class="text-white bg-brandblue border-0 py-2 px-6 focus:outline-none hover:text-brandgold rounded text-lg flex justify-center items-center"
+          >{#if sending}
+            <svg class="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg> Processing
+          {:else if success}
+            Received, thank you!
+          {:else if failed}
+            Somthing went wrong
+          {:else if ready}
+            Send
+          {/if}</button
+        >
       </div>
       <div class="relative mb-4">
         <label for="email" class="hidden leading-7 text-sm text-gray-600"
@@ -144,7 +172,7 @@
           type="email"
           id="email"
           name="email"
-          bind:value={email}
+          bind:value="{email}"
           placeholder="Your email"
           class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
         />
@@ -157,9 +185,9 @@
           id="message"
           name="message"
           placeholder="Your message"
-          bind:value={message}
+          bind:value="{message}"
           class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-        />
+        ></textarea>
       </div>
       <div class="text-red-700 text-center text-sm py-2">
         {#if failed}
@@ -167,11 +195,11 @@
         {/if}
       </div>
       <button
-        on:click={sendForm}
-        class:bg-brandblue={ready}
-        class:bg-green-600={success}
-        class:bg-red-600={failed}
-        class:bg-yellow-600={sending}
+        on:click="{sendForm}"
+        class:bg-brandblue="{ready}"
+        class:bg-green-600="{success}"
+        class:bg-red-600="{failed}"
+        class:bg-yellow-600="{sending}"
         class="text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:text-brandgold rounded text-lg flex justify-center items-center"
         >{#if sending}
           <svg class="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
@@ -181,13 +209,12 @@
               cy="12"
               r="10"
               stroke="currentColor"
-              stroke-width="4"
-            />
+              stroke-width="4"></circle>
             <path
               class="opacity-75"
               fill="currentColor"
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            />
+            ></path>
           </svg> Processing
         {:else if success}
           Received, thank you!

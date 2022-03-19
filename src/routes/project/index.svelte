@@ -1,11 +1,11 @@
 <script context="module">
+  export const prerender = true;
   export const load = async ({ fetch }) => {
     const res = await fetch("/project.json");
 
-    console.log(res);
-
     if (res.ok) {
       const jsonData = await res.json();
+      console.log(jsonData);
       const projects = await jsonData;
 
       return {
