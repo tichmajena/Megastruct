@@ -1,9 +1,19 @@
 <script>
   export let bar_color;
+  import bg_img from "$lib/assets/sacred-heart-college-01.jpg";
+  //  style="background-image: url('{bg_img}');"
 </script>
 
-<div class="pt-24 w-full bg-red-400 ">
-  <div class="container h-40 relative">
+<div
+  class=" w-full bg-cover bg-center bg-red-500 relative bg-opacity-50 overflow-clip"
+>
+  <img
+    src="{bg_img}"
+    alt=""
+    class=" absolute inset-0 top-1/2 -translate-y-1/3 object-cover w-full"
+  />
+  <div class="mix-blend-multiply bg-red-700 absolute inset-0"></div>
+  <div class="container h-80 relative">
     <div class="absolute bottom-0 right-0 w-fit ">
       <div class="flex pb-3">
         <div class="flex">

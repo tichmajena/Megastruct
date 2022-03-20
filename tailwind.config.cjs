@@ -7,6 +7,9 @@ const config = {
       padding: "2rem",
     },
     extend: {
+      backgroundImage: {
+        header: "url('/src/lib/assets/sacred-heart-college-01.jpg')",
+      },
       fontSize: {
         "9xl": ["8.5rem", "1"],
       },
@@ -23,7 +26,11 @@ const config = {
     },
   },
 
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    styled: true,
+    themes: false,
+  },
 };
 
 module.exports = config;

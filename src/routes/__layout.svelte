@@ -4,12 +4,9 @@
   import Nav from "$lib/components/Nav.svelte";
 </script>
 
-<header>
-  <Nav />
-</header>
-
-<main>
-  <slot />
-</main>
-
+<Nav>
+  <main>
+    <slot />
+  </main>
+</Nav>
 <footer></footer>
