@@ -13,6 +13,7 @@
   import Hero from "$lib/components/Hero.svelte";
   import Footer from "$lib/components/Footer.svelte";
   import ObjectivesCard from "$lib/cards/ObjectivesCard.svelte";
+  import PageAnim from "$lib/animations/PageAnim.svelte";
   import { getItemId } from "$lib/components/Carousel.svelte";
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
@@ -66,50 +67,51 @@
   console.log(items);
 </script>
 
-<Hero />
-
-<Header>
-  <span slot="number">03</span>
-  <span slot="sub-t">&#8203;</span>
-  <span slot="heading">Home Page</span>
-  <span slot="sub-b">&#8203;</span>
-</Header>
-<TextBlock>
-  <span slot="heading"> Welcome </span>
-  <span slot="content">
-    <p>
-      The right of everyone to a world of work free from violence and harassment
-      has never before been clearly articulated in an international treaty. It
-      also recognizes that such behaviours can constitute a human rights
-      violation or abuse thus presenting to us with a standard setting statute
-      which Zimbabwe is yet to adopt and align with national laws. The
-      Recommendation also sets out practical measures, including leave for
-      victims, flexible work arrangements, and awareness-raising.
-    </p>
-  </span>
-</TextBlock>
-<QuoteBlock>
-  <span slot="heading">Our Mission</span>
-  <span slot="content"
-    >The right of everyone to a world of work free from violence and harassment
-    has never before been clearly articulated in an international treaty.</span
-  >
-</QuoteBlock>
-<TextImageBlock>
-  <span slot="heading"> Welcome </span>
-  <span slot="content">
-    <p>
-      The right of everyone to a world of work free from violence and harassment
-      has never before been clearly articulated in an international treaty. It
-      also recognizes that such behaviours can constitute a human rights
-      violation or abuse thus presenting to us with a standard setting statute
-      which Zimbabwe is yet to adopt and align with national laws. The
-      Recommendation also sets out practical measures, including leave for
-      victims, flexible work arrangements, and awareness-raising.
-    </p>
-  </span>
-</TextImageBlock>
-<Carousel name={"colors"} {items} />
+<PageAnim>
+  <Hero />
+  <div class="w-full min-h-screen flex items-center">
+    <TextBlock>
+      <span slot="heading"> Welcome </span>
+      <span slot="content">
+        <p class="font-bold text-stone-400 text-2xl">
+          MegaStruct leverages cutting edge engineering and technical theory
+        </p>
+        <p>
+          MegaStruct leverages cutting edge engineering and technical theory to
+          provide clients with the latest in innovative, cost effective and
+          sustainable design solutions. Our highly trained and professionally
+          registered staff members are experienced to cover all aspects of
+          engineering and project management. We use our years of engineering
+          experience to manage and execute complex projects in challenging
+          environments. These include; roads, water and sewer reticulation,
+          bridges, dams, water reservoirs, and sewage treatment plants.
+        </p>
+      </span>
+    </TextBlock>
+  </div>
+  <QuoteBlock>
+    <span slot="heading">Our Mission</span>
+    <span slot="content"
+      >To deliver comprehensive and creative professional engineering design
+      solutions to meet our client needs and to enhance the communities where
+      our clients live and work.</span
+    >
+  </QuoteBlock>
+  <!-- <TextImageBlock>
+    <span slot="heading"> Welcome </span>
+    <span slot="content">
+      <p>
+        The right of everyone to a world of work free from violence and
+        harassment has never before been clearly articulated in an international
+        treaty. It also recognizes that such behaviours can constitute a human
+        rights violation or abuse thus presenting to us with a standard setting
+        statute which Zimbabwe is yet to adopt and align with national laws. The
+        Recommendation also sets out practical measures, including leave for
+        victims, flexible work arrangements, and awareness-raising.
+      </p>
+    </span>
+  </TextImageBlock> -->
+  <!--<Carousel name="{'colors'}" items="{items}" />
 
 <nav>
   {#each colors as item, i}
@@ -128,8 +130,9 @@
       <button class="py-4 px-2 bg-sky-600">Next</button>
     </a>
   {/if}
-{/key}
-<Footer />
+{/key} -->
+  <Footer />
+</PageAnim>
 
 <!-- <Carousel name="{'kara'}" items="{colors}" />
 

@@ -25,12 +25,17 @@
   import Header from "$lib/components/Header.svelte";
   import Carousel from "$lib/components/Carousel.svelte";
   import ProjectCard from "$lib/cards/ProjectCard.svelte";
+  import Footer from "$lib/components/Footer.svelte";
+  import PageAnim from "$lib/animations/PageAnim.svelte";
   import { getItemId } from "$lib/components/Carousel.svelte";
   import { page } from "$app/stores";
+
   export let projects;
   let colors = ["red", "blue", "green", "yellow", "orange", "purple"];
-  const items = colors.map((props, i) => ({
-    props: { item: props, number: i + 1 },
+  console.log(projects);
+
+  const items = projects.map((props, i) => ({
+    props: { title: props.title.rendered, number: i + 1 },
     component: ProjectCard,
   }));
 
@@ -73,35 +78,38 @@
   }
 </script>
 
-<Header bar_color={"rgb(28 25 23)"}>
-  <span slot="number">03</span>
-  <span slot="sub-t">Our Approach</span>
-  <span slot="heading">Our Projects</span>
-  <span slot="sub-b">Our Mission</span>
-</Header>
+<PageAnim>
+  <Header bar_color="{'rgb(28 25 23)'}">
+    <span slot="number">03</span>
+    <span slot="sub-t">Our Approach</span>
+    <span slot="heading">Our Projects</span>
+    <span slot="sub-b">Our Mission</span>
+  </Header>
 
-<div class="w-full px-6 bg-stone-900">
-  <div class="max-w-screen-lg mx-auto py-8">
-    <!--  -->
-    <Carousel name={"colors"} {items} />
+  <div class="w-full px-6 bg-stone-900">
+    <div class="max-w-screen-lg mx-auto py-8">
+      <!--  -->
+      <Carousel name="{'colors'}" items="{items}" />
 
-    <nav>
-      {#each colors as item, i}
-        <li>
-          <a href="#{getItemId('colors', i)}">{item}</a>
-        </li>{/each}
-    </nav>
-    {#key $page.url.hash}
-      {#if -1 < getPrev("colors", $page.url.hash)}
-        <a href="#{prevurl('colors', $page.url.hash)}">
-          <button class="py-4 px-2 bg-sky-600">Prev</button>
-        </a>
-      {/if}
-      {#if colors.length > getNext("colors", $page.url.hash)}
-        <a href="#{nexturl('colors', $page.url.hash)}">
-          <button class="py-4 px-2 bg-sky-600">Next</button>
-        </a>
-      {/if}
-    {/key}
+      <nav>
+        {#each colors as item, i}
+          <li>
+            <a href="#{getItemId('colors', i)}">{item}</a>
+          </li>{/each}
+      </nav>
+      {#key $page.url.hash}
+        {#if -1 < getPrev("colors", $page.url.hash)}
+          <a href="#{prevurl('colors', $page.url.hash)}">
+            <button class="py-4 px-2 bg-sky-600">Prev</button>
+          </a>
+        {/if}
+        {#if colors.length > getNext("colors", $page.url.hash)}
+          <a href="#{nexturl('colors', $page.url.hash)}">
+            <button class="py-4 px-2 bg-sky-600">Next</button>
+          </a>
+        {/if}
+      {/key}
+    </div>
   </div>
-</div>
+  <Footer />
+</PageAnim>

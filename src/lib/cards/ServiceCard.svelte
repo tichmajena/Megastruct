@@ -6,7 +6,7 @@
   export let content = ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia soluta quas
         aperiam sit ipsum magni error blanditiis exercitationem esse dolores, sed
         quae fugit fugiat, possimus, asperiores eligendi consectetur quidem nisi?`;
-  export let name;
+  export let service;
   export let position;
 </script>
 
@@ -18,10 +18,9 @@
   </div>
   <div class="">
     <div class="font-gotham flex flex-col mb-5">
-      <span class="font-bold text-stone-900 text-2xl">{name}</span>
-      <span class="font-medium text-red-600 text-xl">{position}</span>
+      <span class="font-bold text-stone-900 text-2xl">{service}</span>
     </div>
-    <div class="font-gotham text-stone-800 pr-10 w-5/6 md:pr-20 prose">
+    <div class="font-gotham text-stone-800 pr-10  md:pr-20 prose">
       {@html content}
     </div>
   </div>

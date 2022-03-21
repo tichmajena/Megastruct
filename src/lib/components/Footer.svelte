@@ -8,14 +8,14 @@
   class=" w-full bg-cover bg-center bg-red-500 relative bg-opacity-50 overflow-clip"
 >
   <img
-    src={bg_img}
+    src="{bg_img}"
     alt=""
     class=" absolute inset-0 top-1/2 -translate-y-1/3 object-cover w-full"
   />
-  <div class="mix-blend-multiply bg-gray-900 absolute inset-0" />
+  <div class="mix-blend-multiply bg-stone-900 absolute inset-0"></div>
   <div class="container min-h-80 relative flex flex-col md:flex-row pt-16">
     <div class="relative w-1/4 mb-8">
-      <img src={logo_icon} alt="" class="w-16" />
+      <img src="{logo_icon}" alt="" class="w-16" />
     </div>
     <div class="relative w-1/4 mb-8">
       <span class="font-gotham font-bold text-xl">Menu</span>

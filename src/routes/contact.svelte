@@ -89,48 +89,15 @@
           <div class="h-4 w-4 pt-1">
             <!-- <img src={phone_ic} loading="lazy" alt="" class="w-full" /> -->
           </div>
-          <div class="flex flex-wrap mb-2">
-            <a href="tel:+263773516700" class="link ml-3 text-sm"
-              >+26377 351 6700,</a
-            >
-            <a href="tel:+263719516700" class="link ml-3 text-sm"
-              >+26371 951 6700</a
-            >
-            <a href="tel:+263779480896" class="link ml-3 text-sm"
-              >+26377 948 0896</a
-            >
-          </div>
         </div>
         <div class="flex">
           <div class="h-4 w-4 pt-1">
             <!-- <img src={mail_ic} loading="lazy" alt="" class="w-full" /> -->
           </div>
-          <div class="flex flex-col mb-2">
-            <a href="mailto:info@farmbay.co.zw" class="link ml-3 text-sm"
-              >info@farmbay.co.zw</a
-            >
-            <a href="mailto:finance@farmbay.co.zw" class="link ml-3 text-sm"
-              >finance@farmbay.co.zw</a
-            >
-            <a href="mailto:sales@farmbay.co.zw" class="link ml-3 text-sm"
-              >sales@farmbay.co.zw</a
-            >
-            <a href="mailto:procurement@farmbay.co.zw" class="link ml-3 text-sm"
-              >procurement@farmbay.co.zw</a
-            >
-            <a href="mailto:marketing@farmbay.co.zw" class="link ml-3 text-sm"
-              >marketing@farmbay.co.zw</a
-            >
-          </div>
         </div>
         <div class="hidden">
           <div class="h-4 w-4 pt-1">
             <!-- <img src={place_ic} loading="lazy" alt="" class="w-full" /> -->
-          </div>
-          <div class="flex flex-col">
-            <a href="" class="link ml-3 text-sm"
-              >Farm Bay Pvt Reedbuck Farm Acturus, Goromonzi.</a
-            >
           </div>
         </div>
         <button
