@@ -1,11 +1,11 @@
 <script>
   import bg_img from "$lib/assets/sacred-heart-college-01.jpg";
+
   export let id = "";
   export let title;
+  export let image = bg_img;
   export let number = 1;
-  export let content = ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia soluta quas
-        aperiam sit ipsum magni error blanditiis exercitationem esse dolores, sed
-        quae fugit fugiat, possimus, asperiores eligendi consectetur quidem nisi?`;
+  //export let content = ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia soluta quas aperiam sit ipsum magni error blanditiis exercitationem esse dolores, sedquae fugit fugiat, possimus, asperiores eligendi consectetur quidem nisi?`;
 </script>
 
 <li
@@ -31,11 +31,7 @@
     </div>
   </div>
 
-  <div class="">
-    <div
-      class="font-gotham font-medium text-stone-400 md:text-3xl text-xl pr-10 md:pr-20"
-    >
-      <img src="{bg_img}" alt="" />
-    </div>
+  <div class=" pr-10 md:pr-20">
+    <img src="{image}" alt="" />
   </div>
 </li>

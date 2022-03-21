@@ -148,7 +148,7 @@
           <a href="#{getItemId('objectives', i)}">{item}</a>
         </li>{/each}
     </nav> -->
-    <div>
+    <div class="flex w-3/4 mx-auto">
       {#key $page.url}
         {#if -1 < getPrev("objectives", $page.url.hash)}
           <a href="#{prevurl('objectives', $page.url.hash)}">

@@ -26,6 +26,7 @@
   import Carousel from "$lib/components/Carousel.svelte";
   import Footer from "$lib/components/Footer.svelte";
   import ServiceCard from "$lib/cards/ServiceCard.svelte";
+  import PageAnim from "$lib/animations/PageAnim.svelte";
   import { getItemId } from "$lib/components/Carousel.svelte";
   import { page } from "$app/stores";
 
@@ -78,36 +79,66 @@
   console.log(services);
 </script>
 
-<Header>
-  <span slot="number">03</span>
-  <span slot="sub-t">What we do</span>
-  <span slot="heading">Our Services</span>
-  <span slot="sub-b">OurExpertise</span>
-</Header>
+<PageAnim>
+  <Header>
+    <span slot="number">03</span>
+    <span slot="sub-t">What we do</span>
+    <span slot="heading">Our Services</span>
+    <span slot="sub-b">OurExpertise</span>
+  </Header>
 
-<div class="w-full px-6">
-  <div class="max-w-screen-lg mx-auto py-8">
-    <!--  -->
-    <Carousel name="{'colors'}" items="{items}" />
+  <div class="w-full px-6">
+    <div class="max-w-screen-lg mx-auto py-8">
+      <!--  -->
+      <Carousel name="{'services'}" items="{items}" />
 
-    <nav>
+      <!-- <nav>
       {#each colors as item, i}
         <li>
           <a href="#{getItemId('colors', i)}">{item}</a>
         </li>{/each}
-    </nav>
-    {#key $page.url.hash}
-      {#if -1 < getPrev("colors", $page.url.hash)}
-        <a href="#{prevurl('colors', $page.url.hash)}">
-          <button class="py-4 px-2 bg-sky-600">Prev</button>
-        </a>
-      {/if}
-      {#if colors.length > getNext("colors", $page.url.hash)}
-        <a href="#{nexturl('colors', $page.url.hash)}">
-          <button class="py-4 px-2 bg-sky-600">Next</button>
-        </a>
-      {/if}
-    {/key}
+    </nav> -->
+      {#key $page.url}
+        {#if -1 < getPrev("services", $page.url.hash)}
+          <a href="#{prevurl('services', $page.url.hash)}">
+            <button class="py-4 px-2 text-red-600"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+              </svg></button
+            >
+          </a>
+        {/if}
+        {#if services.length > getNext("services", $page.url.hash)}
+          <a href="#{nexturl('services', $page.url.hash)} ">
+            <button class="py-4 px-2 text-red-600"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg></button
+            >
+          </a>
+        {/if}
+      {/key}
+    </div>
   </div>
-</div>
-<Footer />
+  <Footer />
+</PageAnim>

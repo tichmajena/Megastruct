@@ -35,7 +35,7 @@
     props: {
       name: props.title.rendered,
       content: props.content.rendered,
-      position: "",
+      position: props.position,
     },
     component: TeamCard,
   }));
