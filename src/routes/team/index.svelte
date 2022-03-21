@@ -32,7 +32,11 @@
   export let teams;
   let colors = ["red", "blue", "green", "yellow", "orange", "purple"];
   const items = teams.map((props, i) => ({
-    props: { item: props, number: i + 1 },
+    props: {
+      name: props.title.rendered,
+      content: props.content.rendered,
+      position: "",
+    },
     component: TeamCard,
   }));
 
