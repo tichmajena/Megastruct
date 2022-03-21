@@ -5,10 +5,18 @@
 <script>
   import Carousel from "$lib/components/Carousel.svelte";
   import Header from "$lib/components/Header.svelte";
+  import TextBlock from "$lib/components/TextBlock.svelte";
+  import QuoteBlock from "$lib/components/QuoteBlock.svelte";
+  import TextImageBlock from "$lib/components/TextImageBlock.svelte";
+  import Nav from "$lib/components/Nav.svelte";
   import Colors from "$lib/components/Colors.svelte";
+  import Hero from "$lib/components/Hero.svelte";
+  import Footer from "$lib/components/Footer.svelte";
+  import ObjectivesCard from "$lib/cards/ObjectivesCard.svelte";
   import { getItemId } from "$lib/components/Carousel.svelte";
   import { page } from "$app/stores";
   import { goto } from "$app/navigation";
+  import { onDestroy } from "svelte";
 
   let hashes = {};
   let colors = ["red", "blue", "green", "yellow", "orange", "purple"];
@@ -51,20 +59,57 @@
     return i;
   }
 
-  const items = colors.map((props) => ({
-    props: { item: props },
-    component: Colors,
+  const items = colors.map((props, i) => ({
+    props: { item: props, number: i + 1 },
+    component: ObjectivesCard,
   }));
   console.log(items);
 </script>
 
-<Header bar_color="{'red'}">
+<Hero />
+
+<Header>
   <span slot="number">03</span>
   <span slot="sub-t">&#8203;</span>
   <span slot="heading">Home Page</span>
   <span slot="sub-b">&#8203;</span>
 </Header>
-<Carousel name="{'colors'}" items="{items}" />
+<TextBlock>
+  <span slot="heading"> Welcome </span>
+  <span slot="content">
+    <p>
+      The right of everyone to a world of work free from violence and harassment
+      has never before been clearly articulated in an international treaty. It
+      also recognizes that such behaviours can constitute a human rights
+      violation or abuse thus presenting to us with a standard setting statute
+      which Zimbabwe is yet to adopt and align with national laws. The
+      Recommendation also sets out practical measures, including leave for
+      victims, flexible work arrangements, and awareness-raising.
+    </p>
+  </span>
+</TextBlock>
+<QuoteBlock>
+  <span slot="heading">Our Mission</span>
+  <span slot="content"
+    >The right of everyone to a world of work free from violence and harassment
+    has never before been clearly articulated in an international treaty.</span
+  >
+</QuoteBlock>
+<TextImageBlock>
+  <span slot="heading"> Welcome </span>
+  <span slot="content">
+    <p>
+      The right of everyone to a world of work free from violence and harassment
+      has never before been clearly articulated in an international treaty. It
+      also recognizes that such behaviours can constitute a human rights
+      violation or abuse thus presenting to us with a standard setting statute
+      which Zimbabwe is yet to adopt and align with national laws. The
+      Recommendation also sets out practical measures, including leave for
+      victims, flexible work arrangements, and awareness-raising.
+    </p>
+  </span>
+</TextImageBlock>
+<Carousel name={"colors"} {items} />
 
 <nav>
   {#each colors as item, i}
@@ -84,6 +129,7 @@
     </a>
   {/if}
 {/key}
+<Footer />
 
 <!-- <Carousel name="{'kara'}" items="{colors}" />
 

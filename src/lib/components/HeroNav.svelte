@@ -1,41 +1,25 @@
 <script>
-  import logo_icon from "$lib/assets/megastruct_logo_icon_red.svg";
   import { page } from "$app/stores";
   import { scale } from "svelte/transition";
-  import { hide_menu, scroll_y } from "$lib/js/store";
-
-  $: {
-    if ($page.url.pathname === "/") {
-      $hide_menu = true;
-    } else {
-      $hide_menu = false;
-    }
-  }
-  export let fixed = false;
+  import { hide_menu } from "$lib/js/store";
 </script>
 
 <!-- <div class="w-full bg-red-600 px-4 h-10 fixed z-50">
-  <div class="container relative">
-    <div class="relative top-0 left-0 p-2 bg-white w-16">
-      <img src="{logo_icon}" alt="" />
+    <div class="container relative">
+      <div class="relative top-0 left-0 p-2 bg-white w-16">
+        <img src="{logo_icon}" alt="" />
+      </div>
     </div>
-  </div>
-</div> -->
+  </div> -->
 
 <div class="drawer h-screen w-full font-gotham text-white">
   <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-  <div
-    class="drawer-content flex flex-col "
-    on:scroll={(e) => {
-      $scroll_y = e.srcElement.scrollTop;
-      console.log("scrolling", e.srcElement.scrollTop);
-    }}
-  >
+  <div class="drawer-content flex flex-col">
     <!-- Navbar -->
 
     <div
-      class:hidden={$hide_menu && $page.url.pathname === "/"}
-      class="w-full navbar bg-red-600 z-50 "
+      class:fixed={$hide_menu === false}
+      class="w-full navbar bg-red-600 z-50"
     >
       <div class="flex-none lg:hidden">
         <label for="my-drawer-3" class="btn btn-square btn-ghost">
@@ -53,14 +37,7 @@
           >
         </label>
       </div>
-      <div class="flex-1 px-2 mx-2">
-        <div
-          class:hidden={!fixed}
-          class="absolute top-0 left-20 p-2 bg-white rounded-b-sm shadow-md w-16"
-        >
-          <img src={logo_icon} alt="" />
-        </div>
-      </div>
+      <div class="flex-1 px-2 mx-2" />
       <div class="flex-none hidden lg:block">
         <ul class="menu menu-horizontal">
           <!-- Navbar menu content here -->

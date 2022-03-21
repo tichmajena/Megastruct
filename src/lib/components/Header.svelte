@@ -8,11 +8,11 @@
   class=" w-full bg-cover bg-center bg-red-500 relative bg-opacity-50 overflow-clip"
 >
   <img
-    src="{bg_img}"
+    src={bg_img}
     alt=""
     class=" absolute inset-0 top-1/2 -translate-y-1/3 object-cover w-full"
   />
-  <div class="mix-blend-multiply bg-red-700 absolute inset-0"></div>
+  <div class="mix-blend-multiply bg-red-700 absolute inset-0" />
   <div class="container h-80 relative">
     <div class="absolute bottom-0 right-0 w-fit ">
       <div class="flex pb-3">
@@ -22,7 +22,7 @@
             ><slot name="number">00</slot></span
           >
           <div class="h-full pt-4 pb-3">
-            <div class="h-full border-r-2 border-white"></div>
+            <div class="h-full border-r-2 border-white" />
           </div>
         </div>
         <div class="pl-4 pt-3">
@@ -37,7 +37,7 @@
           >
         </div>
       </div>
-      <div class="bg-white py-1" style="background-color:{bar_color};"></div>
+      <div class="bg-white py-1" style="background-color:{bar_color};" />
     </div>
   </div>
 </div>

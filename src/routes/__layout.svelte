@@ -9,4 +9,4 @@
     <slot />
   </main>
 </Nav>
-<footer></footer>
+<footer />

@@ -1,9 +1,9 @@
 export const BASE = import.meta.env.VITE_BASE;
 const base = BASE;
 
-export async function getJSON(request, resource, data) {
+export async function getJSON(event, resource, data) {
   const res = await fetch(`${base}/${resource}`, {
-    method: request.method,
+    method: event.request.method,
     headers: {
       "content-type": "application/json",
     },
@@ -12,8 +12,8 @@ export async function getJSON(request, resource, data) {
 
   if (
     res.ok &&
-    request.request.method !== "GET" &&
-    request.headers.accept !== "application/json"
+    event.request.method !== "GET" &&
+    event.request.headers.accept !== "application/json"
   ) {
     return {
       status: 303,

@@ -1,7 +1,7 @@
 export const BASE = import.meta.env.VITE_BASE;
 const base = BASE;
 
-export async function getJSON(request, resource, data) {
+export async function getJSON(event, resource, data) {
   // user must have a cookie set
   //   if (!request.context.userid) {
   //     return { status: 401 };
@@ -9,7 +9,7 @@ export async function getJSON(request, resource, data) {
   console.log(`${base}/${resource}`);
 
   const res = await fetch(`${base}/${resource}`, {
-    method: request.request.method,
+    method: event.request.method,
     headers: {
       "content-type": "application/json",
     },
@@ -22,13 +22,13 @@ export async function getJSON(request, resource, data) {
   // /todos page, rather than showing the response
   if (
     res.ok &&
-    request.request.method !== "GET" &&
-    request.headers.accept !== "application/json"
+    event.request.method !== "GET" &&
+    event.request.headers.accept !== "application/json"
   ) {
     return {
       status: 303,
       headers: {
-        location: "/project",
+        location: "/projects",
       },
       body: "", // TODO https://github.com/sveltejs/kit/issues/1047
     };
