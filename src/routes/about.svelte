@@ -37,7 +37,6 @@
   let hashes = {};
 
   function getNext(name, hash) {
-    console.table($page.url.hash);
     let a = hash.split("-");
 
     // if (a[0] !== `#${name}` && hash !== "" && hashes[name]) {

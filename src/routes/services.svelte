@@ -1,4 +1,4 @@
-<script context="module">
+<!-- <script context="module">
   export const load = async ({ fetch }) => {
     const res = await fetch("/services.json");
 
@@ -19,8 +19,7 @@
       error: new Error(message),
     };
   };
-</script>
-
+</script> -->
 <script>
   import Header from "$lib/components/Header.svelte";
   import Carousel from "$lib/components/Carousel.svelte";
@@ -31,7 +30,7 @@
   import { page } from "$app/stores";
 
   export let services;
-
+  let hashes = {};
   let colors = ["red", "blue", "green", "yellow", "orange", "purple"];
   const items = services.map((props, i) => ({
     props: { service: props.title.rendered, content: props.content.rendered },
@@ -39,7 +38,6 @@
   }));
 
   function getNext(name, hash) {
-    console.table({ name, hash });
     let a = hash.split("-");
 
     // if (a[0] !== `#${name}` && hash !== "" && hashes[name]) {
@@ -75,8 +73,6 @@
     i = i - 1;
     return i;
   }
-
-  console.log(services);
 </script>
 
 <PageAnim>

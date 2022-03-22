@@ -18,7 +18,7 @@
     <!-- Navbar -->
 
     <div
-      class:fixed={$hide_menu === false}
+      class:fixed="{$hide_menu === false}"
       class="w-full navbar bg-red-600 z-50"
     >
       <div class="flex-none lg:hidden">
@@ -32,62 +32,61 @@
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            /></svg
+              d="M4 6h16M4 12h16M4 18h16"></path></svg
           >
         </label>
       </div>
-      <div class="flex-1 px-2 mx-2" />
+      <div class="flex-1 px-2 mx-2"></div>
       <div class="flex-none hidden lg:block">
         <ul class="menu menu-horizontal">
           <!-- Navbar menu content here -->
           <li class="relative">
-            <a href="/">Home</a>
+            <a sveltekit:prefetch href="/">Home</a>
             <div
               transition:scale
               class="p-0.5 absolute w-1/2 mx-auto left-1/2 -translate-x-1/2 -bottom-2 bg-white z-60"
-              class:hidden={$page.url.pathname !== "/"}
-            />
+              class:hidden="{$page.url.pathname !== '/'}"
+            ></div>
           </li>
           <li class="relative">
-            <a href="/about">About</a>
+            <a sveltekit:prefetch href="/about">About</a>
             <div
               transition:scale
               class="p-0.5 absolute w-1/2 mx-auto left-1/2 -translate-x-1/2 -bottom-2 bg-white z-60"
-              class:hidden={$page.url.pathname !== "/about"}
-            />
+              class:hidden="{$page.url.pathname !== '/about'}"
+            ></div>
           </li>
           <li class="relative">
-            <a href="/services">Services</a>
+            <a sveltekit:prefetch href="/services">Services</a>
             <div
               transition:scale
               class="p-0.5 absolute w-1/2 mx-auto left-1/2 -translate-x-1/2 -bottom-2 bg-white z-60"
-              class:hidden={$page.url.pathname !== "/services"}
-            />
+              class:hidden="{$page.url.pathname !== '/services'}"
+            ></div>
           </li>
           <li class="relative">
-            <a href="/team">Team</a>
+            <a sveltekit:prefetch href="/team">Team</a>
             <div
               transition:scale
               class="p-0.5 absolute w-1/2 mx-auto left-1/2 -translate-x-1/2 -bottom-2 bg-white z-60"
-              class:hidden={$page.url.pathname !== "/team"}
-            />
+              class:hidden="{$page.url.pathname !== '/team'}"
+            ></div>
           </li>
           <li class="relative">
-            <a href="/projects">Projects</a>
+            <a sveltekit:prefetch href="/projects">Projects</a>
             <div
               transition:scale
               class="p-0.5 absolute w-1/2 mx-auto left-1/2 -translate-x-1/2 -bottom-2 bg-white z-60"
-              class:hidden={$page.url.pathname !== "/projects"}
-            />
+              class:hidden="{$page.url.pathname !== '/projects'}"
+            ></div>
           </li>
           <li class="relative">
-            <a href="/contact">Contact</a>
+            <a sveltekit:prefetch href="/contact">Contact</a>
             <div
               transition:scale
               class="p-0.5 absolute w-1/2 mx-auto left-1/2 -translate-x-1/2 -bottom-2 bg-white z-60"
-              class:hidden={$page.url.pathname !== "/contact"}
-            />
+              class:hidden="{$page.url.pathname !== '/contact'}"
+            ></div>
           </li>
         </ul>
       </div>
@@ -97,13 +96,13 @@
     <slot><!-- optional fallback --></slot>
   </div>
   <div class="drawer-side ">
-    <label for="my-drawer-3" class="drawer-overlay" />
+    <label for="my-drawer-3" class="drawer-overlay"></label>
     <ul class="menu p-4 overflow-y-auto w-80 bg-red-700">
       <!-- Sidebar content here -->
-      <li><a href="/">Home</a></li>
+      <li><a sveltekit:prefetch href="/">Home</a></li>
       <li class="relative">
-        <a href="/about">About</a>
-        <div class="p-0.5 absolute w-full -bottom-2 bg-white z-60" />
+        <a sveltekit:prefetch href="/about">About</a>
+        <div class="p-0.5 absolute w-full -bottom-2 bg-white z-60"></div>
       </li>
     </ul>
   </div>

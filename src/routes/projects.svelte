@@ -1,4 +1,4 @@
-<script context="module">
+<!-- <script context="module">
   // export const prerender = true;
   export const load = async ({ fetch }) => {
     const res = await fetch("/projects.json");
@@ -19,8 +19,7 @@
       error: new Error(message),
     };
   };
-</script>
-
+</script> -->
 <script>
   import Header from "$lib/components/Header.svelte";
   import Carousel from "$lib/components/Carousel.svelte";
@@ -33,7 +32,6 @@
   export let projects;
   let hashes = {};
   let colors = ["red", "blue", "green", "yellow", "orange", "purple"];
-  console.log(projects);
 
   const items = projects.map((props, i) => ({
     props: {
@@ -46,7 +44,6 @@
   }));
 
   function getNext(name, hash) {
-    console.table({ name, hash });
     let a = hash.split("-");
 
     // if (a[0] !== `#${name}` && hash !== "" && hashes[name]) {

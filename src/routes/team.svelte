@@ -1,4 +1,4 @@
-<script context="module">
+<!-- <script context="module">
   export const load = async ({ fetch }) => {
     const res = await fetch("/team.json");
 
@@ -19,8 +19,7 @@
       error: new Error(message),
     };
   };
-</script>
-
+</script> -->
 <script>
   import Header from "$lib/components/Header.svelte";
   import Carousel from "$lib/components/Carousel.svelte";
@@ -32,6 +31,7 @@
 
   export let teams;
   let colors = ["red", "blue", "green", "yellow", "orange", "purple"];
+  let hashes = {};
   const items = teams.map((props, i) => ({
     props: {
       name: props.title.rendered,
@@ -42,7 +42,6 @@
   }));
 
   function getNext(name, hash) {
-    console.table({ name, hash });
     let a = hash.split("-");
 
     // if (a[0] !== `#${name}` && hash !== "" && hashes[name]) {
@@ -78,8 +77,6 @@
     i = i - 1;
     return i;
   }
-
-  console.log(teams);
 </script>
 
 <PageAnim>
@@ -93,26 +90,50 @@
   <div class="w-full px-6">
     <div class="max-w-screen-lg mx-auto py-8">
       <!--  -->
-      <Carousel name="{'colors'}" items="{items}" />
+      <Carousel name="{'team'}" items="{items}" />
 
-      <nav>
-        {#each colors as item, i}
-          <li>
-            <a href="#{getItemId('colors', i)}">{item}</a>
-          </li>{/each}
-      </nav>
-      {#key $page.url.hash}
-        {#if -1 < getPrev("colors", $page.url.hash)}
-          <a href="#{prevurl('colors', $page.url.hash)}">
-            <button class="py-4 px-2 bg-sky-600">Prev</button>
-          </a>
-        {/if}
-        {#if colors.length > getNext("colors", $page.url.hash)}
-          <a href="#{nexturl('colors', $page.url.hash)}">
-            <button class="py-4 px-2 bg-sky-600">Next</button>
-          </a>
-        {/if}
-      {/key}
+      <div class="flex w-3/4 mx-auto">
+        {#key $page.url}
+          {#if -1 < getPrev("team", $page.url.hash)}
+            <a href="#{prevurl('team', $page.url.hash)}">
+              <button class="py-4 px-2 text-red-600"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-12 w-12"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg></button
+              >
+            </a>
+          {/if}
+          {#if teams.length > getNext("team", $page.url.hash)}
+            <a href="#{nexturl('team', $page.url.hash)} ">
+              <button class="py-4 px-2 text-red-600"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-12 w-12"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg></button
+              >
+            </a>
+          {/if}
+        {/key}
+      </div>
     </div>
   </div>
   <Footer />

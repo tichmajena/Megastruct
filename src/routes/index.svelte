@@ -23,7 +23,6 @@
   let colors = ["red", "blue", "green", "yellow", "orange", "purple"];
 
   function getNext(name, hash) {
-    console.table({ name, hash });
     let a = hash.split("-");
 
     // if (a[0] !== `#${name}` && hash !== "" && hashes[name]) {
@@ -64,7 +63,6 @@
     props: { item: props, number: i + 1 },
     component: ObjectivesCard,
   }));
-  console.log(items);
 </script>
 
 <PageAnim>

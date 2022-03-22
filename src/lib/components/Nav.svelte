@@ -63,7 +63,7 @@
         <ul class="menu menu-horizontal">
           <!-- Navbar menu content here -->
           <li class="relative">
-            <a href="/">Home</a>
+            <a sveltekit:prefetch href="/">Home</a>
             <div
               transition:scale
               class="p-0.5 absolute w-1/2 mx-auto left-1/2 -translate-x-1/2 -bottom-2 bg-white z-60"
@@ -71,7 +71,7 @@
             ></div>
           </li>
           <li class="relative">
-            <a href="/about">About</a>
+            <a sveltekit:prefetch href="/about">About</a>
             <div
               transition:scale
               class="p-0.5 absolute w-1/2 mx-auto left-1/2 -translate-x-1/2 -bottom-2 bg-white z-60"
@@ -79,7 +79,7 @@
             ></div>
           </li>
           <li class="relative">
-            <a href="/services">Services</a>
+            <a sveltekit:prefetch href="/services">Services</a>
             <div
               transition:scale
               class="p-0.5 absolute w-1/2 mx-auto left-1/2 -translate-x-1/2 -bottom-2 bg-white z-60"
@@ -87,7 +87,7 @@
             ></div>
           </li>
           <li class="relative">
-            <a href="/team">Team</a>
+            <a sveltekit:prefetch href="/team">Team</a>
             <div
               transition:scale
               class="p-0.5 absolute w-1/2 mx-auto left-1/2 -translate-x-1/2 -bottom-2 bg-white z-60"
@@ -95,7 +95,7 @@
             ></div>
           </li>
           <li class="relative">
-            <a href="/projects">Projects</a>
+            <a sveltekit:prefetch href="/projects">Projects</a>
             <div
               transition:scale
               class="p-0.5 absolute w-1/2 mx-auto left-1/2 -translate-x-1/2 -bottom-2 bg-white z-60"
@@ -103,7 +103,7 @@
             ></div>
           </li>
           <li class="relative">
-            <a href="/contact">Contact</a>
+            <a sveltekit:prefetch href="/contact">Contact</a>
             <div
               transition:scale
               class="p-0.5 absolute w-1/2 mx-auto left-1/2 -translate-x-1/2 -bottom-2 bg-white z-60"
@@ -121,10 +121,21 @@
     <label for="my-drawer-3" class="drawer-overlay"></label>
     <ul class="menu p-4 overflow-y-auto w-80 bg-red-700">
       <!-- Sidebar content here -->
-      <li><a href="/">Home</a></li>
-      <li class="relative">
-        <a href="/about">About</a>
-        <div class="p-0.5 absolute w-full -bottom-2 bg-white z-60"></div>
+      <li><a sveltekit:prefetch href="/">Home</a></li>
+      <li>
+        <a sveltekit:prefetch href="/about">About</a>
+      </li>
+      <li>
+        <a sveltekit:prefetch href="/services">Serivices</a>
+      </li>
+      <li>
+        <a sveltekit:prefetch href="/team">Team</a>
+      </li>
+      <li>
+        <a sveltekit:prefetch href="/projects">Projects</a>
+      </li>
+      <li>
+        <a sveltekit:prefetch href="/contact">Contact</a>
       </li>
     </ul>
   </div>

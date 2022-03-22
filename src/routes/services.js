@@ -9,15 +9,19 @@ export const get = async (request) => {
   //   }
 
   //const response = await getJSON(request, `tutor/v1/quiz-question-answer/11/`);
-  const response = await getJSON(request, `wp/v2/team`);
+  const response = await getJSON(request, `wp/v2/service`);
 
   if (response.status === 404) {
-    console.log("404 Team Error");
     // the user has visited before, but hasn't yet
     // created a todo list.
     // start with an empty array
     return { body: [] };
   }
-
-  return response;
+  return {
+    headers: {
+      "cache-control": "public, max-age=3600",
+    },
+    status: response.status,
+    body: { services: response.body },
+  };
 };

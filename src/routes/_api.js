@@ -1,12 +1,11 @@
 export const BASE = import.meta.env.VITE_BASE;
-const base = BASE;
+const base = "https://megastruct.co.zw/cms/wp-json";
 
 export async function getJSON(event, resource, data) {
   // user must have a cookie set
   //   if (!request.context.userid) {
   //     return { status: 401 };
   //   }
-  console.log(`${base}/${resource}`);
 
   const res = await fetch(`${base}/${resource}`, {
     method: event.request.method,
@@ -28,7 +27,7 @@ export async function getJSON(event, resource, data) {
     return {
       status: 303,
       headers: {
-        location: "/projects",
+        location: "/",
       },
       body: "", // TODO https://github.com/sveltejs/kit/issues/1047
     };
