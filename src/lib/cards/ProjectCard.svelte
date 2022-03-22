@@ -1,10 +1,57 @@
 <script>
   import bg_img from "$lib/assets/sacred-heart-college-01.jpg";
+  import Carousel from "$lib/components/Carousel.svelte";
+  import { Slidy } from "svelte-slidy";
 
   export let id = "";
   export let title;
   export let image = bg_img;
   export let number = 1;
+  export let slides = [];
+
+  // const slides = gallery.map((image) => {
+  //   return {
+  //     id: image.id,
+  //     src: image.guid,
+  //   };
+  // });
+  const options = {
+    slides: [],
+    wrap: {
+      id: "",
+      width: "100%",
+      height: "100%",
+      padding: "0",
+      align: "middle",
+      alignmargin: 50,
+    },
+    slide: {
+      gap: 20,
+      class: "",
+      width: "100%",
+      height: "100%",
+      backimg: true,
+      imgsrckey: "guid",
+      objectfit: "cover",
+      overflow: "hidden",
+    },
+    controls: {
+      dots: true,
+      dotsnum: true,
+      dotsarrow: true,
+      dotspure: false,
+      arrows: true,
+      keys: true,
+      drag: true,
+      wheel: true,
+    },
+    options: {
+      axis: "x",
+      loop: false,
+      duration: 550,
+    },
+  };
+
   //export let content = ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia soluta quas aperiam sit ipsum magni error blanditiis exercitationem esse dolores, sedquae fugit fugiat, possimus, asperiores eligendi consectetur quidem nisi?`;
 </script>
 
@@ -31,7 +78,8 @@
     </div>
   </div>
 
-  <div class=" pr-10 md:pr-20">
-    <img src="{image}" alt="" />
+  <div class=" pr-10 md:pr-20 w-full h-full">
+    <!-- <img src="{image}" alt="" /> -->
+    <Slidy {...options} slides="{slides}" />
   </div>
 </li>

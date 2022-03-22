@@ -35,7 +35,7 @@
 
     <div
       class:hidden="{$hide_menu && $page.url.pathname === '/'}"
-      class="w-full navbar bg-red-600 z-50 fixed"
+      class="w-full navbar bg-red-600 z-50 fixed shadow-lg"
     >
       <div class="flex-none lg:hidden">
         <label for="my-drawer-3" class="btn btn-square btn-ghost">

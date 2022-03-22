@@ -26,6 +26,7 @@
   import Carousel from "$lib/components/Carousel.svelte";
   import Footer from "$lib/components/Footer.svelte";
   import TeamCard from "$lib/cards/TeamCard.svelte";
+  import PageAnim from "$lib/animations/PageAnim.svelte";
   import { getItemId } from "$lib/components/Carousel.svelte";
   import { page } from "$app/stores";
 
@@ -81,36 +82,38 @@
   console.log(teams);
 </script>
 
-<Header>
-  <span slot="number">03</span>
-  <span slot="sub-t">Our Approach</span>
-  <span slot="heading">Our Team</span>
-  <span slot="sub-b">Corporate Profiles</span>
-</Header>
+<PageAnim>
+  <Header>
+    <span slot="number">04</span>
+    <span slot="sub-t">Our Approach</span>
+    <span slot="heading">Our Team</span>
+    <span slot="sub-b">Corporate Profiles</span>
+  </Header>
 
-<div class="w-full px-6">
-  <div class="max-w-screen-lg mx-auto py-8">
-    <!--  -->
-    <Carousel name="{'colors'}" items="{items}" />
+  <div class="w-full px-6">
+    <div class="max-w-screen-lg mx-auto py-8">
+      <!--  -->
+      <Carousel name="{'colors'}" items="{items}" />
 
-    <nav>
-      {#each colors as item, i}
-        <li>
-          <a href="#{getItemId('colors', i)}">{item}</a>
-        </li>{/each}
-    </nav>
-    {#key $page.url.hash}
-      {#if -1 < getPrev("colors", $page.url.hash)}
-        <a href="#{prevurl('colors', $page.url.hash)}">
-          <button class="py-4 px-2 bg-sky-600">Prev</button>
-        </a>
-      {/if}
-      {#if colors.length > getNext("colors", $page.url.hash)}
-        <a href="#{nexturl('colors', $page.url.hash)}">
-          <button class="py-4 px-2 bg-sky-600">Next</button>
-        </a>
-      {/if}
-    {/key}
+      <nav>
+        {#each colors as item, i}
+          <li>
+            <a href="#{getItemId('colors', i)}">{item}</a>
+          </li>{/each}
+      </nav>
+      {#key $page.url.hash}
+        {#if -1 < getPrev("colors", $page.url.hash)}
+          <a href="#{prevurl('colors', $page.url.hash)}">
+            <button class="py-4 px-2 bg-sky-600">Prev</button>
+          </a>
+        {/if}
+        {#if colors.length > getNext("colors", $page.url.hash)}
+          <a href="#{nexturl('colors', $page.url.hash)}">
+            <button class="py-4 px-2 bg-sky-600">Next</button>
+          </a>
+        {/if}
+      {/key}
+    </div>
   </div>
-</div>
-<Footer />
+  <Footer />
+</PageAnim>

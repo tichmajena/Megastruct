@@ -5,7 +5,7 @@
 </script>
 
 <div
-  class=" w-full bg-cover bg-center bg-red-500 relative bg-opacity-50 overflow-clip"
+  class=" w-full bg-cover bg-center bg-red-500 relative bg-opacity-50 overflow-clip text-stone-400"
 >
   <img
     src="{bg_img}"
@@ -18,7 +18,7 @@
       <img src="{logo_icon}" alt="" class="w-16" />
     </div>
     <div class="relative w-1/4 mb-8">
-      <span class="font-gotham font-bold text-xl">Menu</span>
+      <span class="font-gotham font-bold text-xl text-stone-200">Menu</span>
       <ul class="font-gotham mt-4">
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
@@ -29,9 +29,9 @@
       </ul>
     </div>
     <div class="relative w-1/4 mb-8">
-      <span class="font-gotham font-bold text-xl">Services</span>
+      <span class="font-gotham font-bold text-xl text-stone-200">Services</span>
       <ul class="font-gotham mt-4">
-        <li><a href="/">Home</a></li>
+        <li><a class="hover:text-stone-200" href="/">Home</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/services">Services</a></li>
         <li><a href="/team">Team</a></li>
@@ -40,7 +40,9 @@
       </ul>
     </div>
     <div class="relative w-1/4 mb-8">
-      <span class="font-gotham font-bold text-xl">Contact us</span>
+      <span class="font-gotham font-bold text-xl text-stone-200"
+        >Contact us</span
+      >
       <ul class="font-gotham mt-4">
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>

@@ -39,6 +39,7 @@
     props: {
       title: props.title.rendered,
       image: props.project_images[0].guid,
+      slides: props.project_images,
       number: i + 1,
     },
     component: ProjectCard,
@@ -85,67 +86,74 @@
 
 <PageAnim>
   <Header bar_color="{'rgb(28 25 23)'}">
-    <span slot="number">03</span>
+    <span slot="number">05</span>
     <span slot="sub-t">Our Approach</span>
     <span slot="heading">Our Projects</span>
     <span slot="sub-b">Our Mission</span>
   </Header>
 
   <div class="w-full px-6 bg-stone-900">
-    <div class="max-w-screen-lg mx-auto py-8">
-      <!--  -->
-      <Carousel name="{'project'}" items="{items}" />
+    <div class="flex gap-4 px-8">
+      <div class="max-w-screen-lg mx-auto py-8">
+        <!--  -->
 
-      <nav>
-        {#each projects as item, i}
-          <li>
-            <a href="#{getItemId('colors', i)}">{item.title.rendered}</a>
-          </li>{/each}
-      </nav>
+        <Carousel name="{'project'}" items="{items}" />
 
-      <div class="flex w-3/4 mx-auto">
-        {#key $page.url}
-          {#if -1 < getPrev("project", $page.url.hash)}
-            <a href="#{prevurl('project', $page.url.hash)}">
-              <button class="py-4 px-2 text-white"
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-12 w-12"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
+        <div class="flex w-3/4 mx-auto">
+          {#key $page.url}
+            {#if -1 < getPrev("project", $page.url.hash)}
+              <a href="#{prevurl('project', $page.url.hash)}">
+                <button class="py-4 px-2 text-white"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-12 w-12"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                  </svg></button
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                </svg></button
-              >
-            </a>
-          {/if}
-          {#if projects.length > getNext("project", $page.url.hash)}
-            <a href="#{nexturl('project', $page.url.hash)} ">
-              <button class="py-4 px-2 text-white"
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-12 w-12"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
+              </a>
+            {/if}
+            {#if projects.length > getNext("project", $page.url.hash)}
+              <a href="#{nexturl('project', $page.url.hash)} ">
+                <button class="py-4 px-2 text-white"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-12 w-12"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  </svg></button
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg></button
-              >
-            </a>
-          {/if}
-        {/key}
+              </a>
+            {/if}
+          {/key}
+        </div>
       </div>
+      <ul class="text-xs w-2/12 text-stone-400 pt-20 text-right">
+        {#each projects as item, i}
+          <li
+            class:text-white="{`#${getItemId('project', i)}` ===
+              $page.url.hash}"
+            class="hover:text-stone-100 mb-1"
+          >
+            <a href="#{getItemId('project', i)}">{item.title.rendered}</a>
+          </li>{/each}
+      </ul>
     </div>
   </div>
+
   <Footer />
 </PageAnim>

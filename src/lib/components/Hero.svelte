@@ -10,7 +10,7 @@
   $: console.log(h);
   $: console.log(y); //  style="background-image: url('{bg_img}');"
   $: {
-    if ($scroll_y >= h) {
+    if ($scroll_y >= h - 55) {
       console.log("show menu");
       $hide_menu = false;
     } else {
@@ -23,19 +23,23 @@
   }
 </script>
 
-<svelte:window bind:scrollY={y} bind:innerHeight={h} on:scroll={handleScroll} />
+<svelte:window
+  bind:scrollY="{y}"
+  bind:innerHeight="{h}"
+  on:scroll="{handleScroll}"
+/>
 <div
   class=" w-full bg-cover bg-center bg-red-500 relative bg-opacity-50 overflow-clip h-screen"
 >
   <img
-    src={bg_img}
+    src="{bg_img}"
     alt=""
     class=" absolute inset-0 top-1/2 -translate-y-1/2 object-cover w-full h-full"
   />
-  <div class="mix-blend-multiply bg-gray-500 absolute inset-0" />
+  <div class="mix-blend-multiply bg-gray-500 absolute inset-0"></div>
   <div class="container min-h-screen relative">
     <div class="relative top-20 left-0 p-2 w-64">
-      <img src={logo_white} alt="" />
+      <img src="{logo_white}" alt="" />
     </div>
     <div class="absolute bottom-25 right-0 w-fit ">
       <div class="flex pb-3">
@@ -45,7 +49,7 @@
             >{y}<slot name="number">00</slot></span
           >
           <div class="h-full pt-4 pb-3">
-            <div class="h-full border-r-2 border-white" />
+            <div class="h-full border-r-2 border-white"></div>
           </div>
         </div>
         <div class="pl-4 pt-3">
@@ -60,14 +64,14 @@
           >
         </div>
       </div>
-      <div class="bg-white py-1" style="background-color:{bar_color};" />
+      <div class="bg-white py-1" style="background-color:{bar_color};"></div>
     </div>
   </div>
   <div
-    class:bottom-16={$hide_menu === true}
-    class:hidden={$hide_menu === false}
-    class:relative={$hide_menu === true}
-    class:absolute={$hide_menu === false}
+    class:bottom-16="{$hide_menu === true}"
+    class:hidden="{$hide_menu === false}"
+    class:relative="{$hide_menu === true}"
+    class:absolute="{$hide_menu === false}"
     class="z-50"
   >
     <HeroNav />
