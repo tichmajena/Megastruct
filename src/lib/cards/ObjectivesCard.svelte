@@ -5,7 +5,10 @@
   export let content;
 </script>
 
-<li id="{id}" class="w-3/4 flex shrink-0 snap-center py-10">
+<li
+  id="{id}"
+  class="w-3/4 flex shrink-0 snap-center py-10 h-screen items-center"
+>
   <div class="flex">
     <span class="font-gotham font-black md:text-8xl text-5xl text-gray-300"
       >{#if number < 10}0{/if}{number}</span
