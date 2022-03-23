@@ -78,7 +78,7 @@
     </div>
   </div>
 
-  <div class=" pr-10 md:pr-20 w-full h-full">
+  <div class=" pr-5 md:pr-20 w-full h-full">
     <!-- <img src="{image}" alt="" /> -->
     <Slidy {...options} slides="{slides}" />
   </div>

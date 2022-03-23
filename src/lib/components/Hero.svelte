@@ -38,7 +38,7 @@
   />
   <div class="mix-blend-multiply bg-gray-500 absolute inset-0"></div>
   <div class="container min-h-screen relative">
-    <div class="relative top-20 left-0 p-2 w-64">
+    <div class="relativemd:top-20 top-10 md:left-0 -left-5 p-2 md:w-64 w-40">
       <img src="{logo_white}" alt="" />
     </div>
     <div class="absolute bottom-25 right-0 w-fit ">

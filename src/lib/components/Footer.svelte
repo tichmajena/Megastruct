@@ -6,19 +6,19 @@
 </script>
 
 <div
-  class=" w-full bg-cover bg-center bg-red-500 relative bg-opacity-50 overflow-clip text-stone-400"
+  class=" w-full bg-cover bg-center bg-red-500 relative bg-opacity-50 overflow-hidden text-stone-400"
 >
   <img
     src="{bg_img}"
     alt=""
-    class=" absolute inset-0 top-1/2 -translate-y-1/3 object-cover w-full"
+    class=" absolute inset-0 top-1/2 md:-translate-y-1/3 -translate-y-1/2 object-cover w-full h-full"
   />
   <div class="mix-blend-multiply bg-stone-900 absolute inset-0"></div>
   <div class="container min-h-80 relative flex flex-col md:flex-row pt-16">
-    <div class="relative w-1/4 pr-6 mb-8">
+    <div class="relative w-full md:w-1/4 pr-6 mb-8">
       <img src="{logo_icon}" alt="" class="w-16" />
     </div>
-    <div class="relative w-1/4 pr-6 mb-8">
+    <div class="relative w-full md:w-1/4 pr-6 mb-8">
       <span class="font-gotham font-bold text-xl text-stone-200">Menu</span>
       <ul class="font-gotham mt-4">
         <li><a class="hover:text-stone-200" href="/">Home</a></li>
@@ -29,7 +29,7 @@
         <li><a class="hover:text-stone-200" href="/contact">Contact</a></li>
       </ul>
     </div>
-    <div class="relative w-1/4 pr-6 mb-8">
+    <div class="relative w-full md:w-1/4 pr-6 mb-8">
       <span class="font-gotham font-bold text-xl text-stone-200">Services</span>
       <ul class="font-gotham mt-4 list-disc pl-4">
         <li>
@@ -54,7 +54,7 @@
         </li>
       </ul>
     </div>
-    <div class="relative w-1/4 pr-6 mb-8">
+    <div class="relative w-full md:w-1/4 pr-6 mb-8">
       <span class="font-gotham font-bold text-xl text-stone-200"
         >Contact us</span
       >

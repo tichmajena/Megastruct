@@ -139,7 +139,7 @@
           {/key}
         </div>
       </div>
-      <ul class="text-xs w-2/12 text-stone-400 pt-20 text-right">
+      <ul class="text-xs sm:hidden w-2/12 text-stone-400 pt-20 text-right">
         {#each projects as item, i}
           <li
             class:text-white="{`#${getItemId('project', i)}` ===

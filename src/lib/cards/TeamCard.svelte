@@ -10,8 +10,11 @@
   export let position;
 </script>
 
-<li id="{id}" class="w-3/4 flex shrink-0 snap-center py-10 mr-12">
-  <div class="mr-10">
+<li
+  id="{id}"
+  class="w-3/4 flex md:flex-row flex-col shrink-0 snap-center py-10 mr-12"
+>
+  <div class="mr-10 mb-8">
     <div class="">
       <img class="w-80" src="{logo_icon}" alt="" />
     </div>
