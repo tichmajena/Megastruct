@@ -11,7 +11,7 @@
   <img
     src="{bg_img}"
     alt=""
-    class=" absolute inset-0 top-1/2 md:-translate-y-1/3 -translate-y-1/2 object-cover w-full h-full"
+    class=" absolute inset-0 top-1/2 -translate-y-1/2 object-cover w-full h-full"
   />
   <div class="mix-blend-multiply bg-stone-900 absolute inset-0"></div>
   <div class="container min-h-80 relative flex flex-col md:flex-row pt-16">

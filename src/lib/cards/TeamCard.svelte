@@ -12,7 +12,7 @@
 
 <li
   id="{id}"
-  class="w-3/4 flex md:flex-row flex-col shrink-0 snap-center py-10 mr-12"
+  class="w-3/4 flex md:flex-row flex-col shrink-0 h-screen pt-48 snap-center py-10 mr-12"
 >
   <div class="mr-10 mb-8">
     <div class="">

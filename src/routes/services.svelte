@@ -94,46 +94,48 @@
           <a href="#{getItemId('colors', i)}">{item}</a>
         </li>{/each}
     </nav> -->
-      {#key $page.url}
-        {#if -1 < getPrev("services", $page.url.hash)}
-          <a href="#{prevurl('services', $page.url.hash)}">
-            <button class="py-4 px-2 text-red-600"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-12 w-12"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
+      <div class="flex w-3/4 mx-auto -mt-60 pt-20">
+        {#key $page.url}
+          {#if -1 < getPrev("services", $page.url.hash)}
+            <a href="#{prevurl('services', $page.url.hash)}">
+              <button class="py-4 px-2 text-red-600"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-12 w-12"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg></button
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-              </svg></button
-            >
-          </a>
-        {/if}
-        {#if services.length > getNext("services", $page.url.hash)}
-          <a href="#{nexturl('services', $page.url.hash)} ">
-            <button class="py-4 px-2 text-red-600"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-12 w-12"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
+            </a>
+          {/if}
+          {#if services.length > getNext("services", $page.url.hash)}
+            <a href="#{nexturl('services', $page.url.hash)} ">
+              <button class="py-4 px-2 text-red-600"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-12 w-12"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg></button
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-              </svg></button
-            >
-          </a>
-        {/if}
-      {/key}
+            </a>
+          {/if}
+        {/key}
+      </div>
     </div>
   </div>
   <Footer />

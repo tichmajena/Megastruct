@@ -92,7 +92,7 @@
       <!--  -->
       <Carousel name="{'team'}" items="{items}" />
 
-      <div class="flex w-3/4 mx-auto">
+      <div class="flex w-3/4 mx-auto -mt-60 pt-20">
         {#key $page.url}
           {#if -1 < getPrev("team", $page.url.hash)}
             <a href="#{prevurl('team', $page.url.hash)}">

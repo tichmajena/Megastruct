@@ -89,14 +89,14 @@
     <span slot="sub-b">Our Mission</span>
   </Header>
 
-  <div class="w-full px-6 bg-stone-900">
-    <div class="flex gap-4 px-8">
+  <div class="w-full px-6 bg-stone-900 pb-36">
+    <div class="xl:flex xl:gap-4 md:px-8">
       <div class="max-w-screen-lg mx-auto py-8">
         <!--  -->
 
         <Carousel name="{'project'}" items="{items}" />
 
-        <div class="flex w-3/4 mx-auto">
+        <div class="flex w-full mx-auto -mt-40">
           {#key $page.url}
             {#if -1 < getPrev("project", $page.url.hash)}
               <a href="#{prevurl('project', $page.url.hash)}">
@@ -139,12 +139,14 @@
           {/key}
         </div>
       </div>
-      <ul class="text-xs sm:hidden w-2/12 text-stone-400 pt-20 text-right">
+      <ul
+        class="text-xs hidden xl:block w-2/12 text-stone-400 pt-32 text-right"
+      >
         {#each projects as item, i}
           <li
             class:text-white="{`#${getItemId('project', i)}` ===
               $page.url.hash}"
-            class="hover:text-stone-100 mb-1"
+            class="hover:text-stone-300 mb-1"
           >
             <a href="#{getItemId('project', i)}">{item.title.rendered}</a>
           </li>{/each}

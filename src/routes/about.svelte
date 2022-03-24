@@ -135,7 +135,7 @@
     </TextImageBlock>
   </div>
   <div class="w-full min-h-screen flex flex-col justify-center">
-    <div class="flex w-3/4 mx-auto">
+    <div class="flex w-3/4 mx-auto -mb-60">
       <!-- <div class="w-1/4"></div> -->
       <HeadingTwo>Our Objectives</HeadingTwo>
     </div>
@@ -147,7 +147,7 @@
           <a href="#{getItemId('objectives', i)}">{item}</a>
         </li>{/each}
     </nav> -->
-    <div class="flex w-3/4 mx-auto">
+    <div class="flex w-3/4 mx-auto -mt-60 pt-20">
       {#key $page.url}
         {#if -1 < getPrev("objectives", $page.url.hash)}
           <a href="#{prevurl('objectives', $page.url.hash)}">

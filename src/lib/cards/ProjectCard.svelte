@@ -18,7 +18,7 @@
   const options = {
     slides: [],
     wrap: {
-      id: "",
+      id: "project_slidy",
       width: "100%",
       height: "100%",
       padding: "0",
@@ -37,11 +37,11 @@
     },
     controls: {
       dots: true,
-      dotsnum: true,
-      dotsarrow: true,
-      dotspure: false,
+      dotsnum: false,
+      dotsarrow: false,
+      dotspure: true,
       arrows: true,
-      keys: true,
+      keys: false,
       drag: true,
       wheel: true,
     },
@@ -57,7 +57,7 @@
 
 <li
   id="{id}"
-  class="w-full flex flex-col md:flex-row shrink-0 snap-center py-10"
+  class="w-full flex flex-col md:flex-row shrink-0 snap-center pb-10 pt-24 h-screen"
 >
   <div class="pr-10 pt-2 mb-4 md:w-1/5">
     <div class="md:pr-1 pl-1">
@@ -78,8 +78,50 @@
     </div>
   </div>
 
-  <div class=" pr-5 md:pr-20 w-full h-full">
+  <div class="aspect-video w-full relative overflow-hidden">
     <!-- <img src="{image}" alt="" /> -->
-    <Slidy {...options} slides="{slides}" />
+    <Slidy {...options} slides="{slides}">
+      <button slot="arrow-left" class="btn bg-red-600 bg-opacity-70"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg></button
+      >
+      <button slot="arrow-right" class="btn bg-red-600 bg-opacity-70"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg></button
+      >
+    </Slidy>
   </div>
 </li>
+
+<style global>
+  :global("project_slidy" .arrow-left) {
+    /* your custom CSS styles */
+    background-color: red;
+  }
+  :global(.arrow-left) {
+    /* your custom CSS styles */
+    background-color: red;
+  }
+</style>
