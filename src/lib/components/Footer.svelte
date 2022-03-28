@@ -1,5 +1,5 @@
 <script>
-  import bg_img from "$lib/assets/sacred-heart-college-01.jpg";
+  import bg_img from "$lib/assets/pic.jpg";
   import logo_icon from "$lib/assets/megastruct_logo_icon_white-01.svg";
   import ContactCard from "$lib/cards/ContactCard.svelte";
   //  style="background-image: url('{bg_img}');"
@@ -9,14 +9,15 @@
   class=" w-full bg-cover bg-center bg-red-500 relative bg-opacity-50 overflow-hidden text-stone-400"
 >
   <img
-    src="{bg_img}"
+    src={bg_img}
     alt=""
     class=" absolute inset-0 top-1/2 -translate-y-1/2 object-cover w-full h-full"
   />
-  <div class="mix-blend-multiply bg-stone-900 absolute inset-0"></div>
+  <div class="bg-red-600" />
+  <div class="mix-blend-multiply bg-stone-900 absolute inset-0" />
   <div class="container min-h-80 relative flex flex-col md:flex-row pt-16">
     <div class="relative w-full md:w-1/4 pr-6 mb-8">
-      <img src="{logo_icon}" alt="" class="w-16" />
+      <img src={logo_icon} alt="" class="w-16" />
     </div>
     <div class="relative w-full md:w-1/4 pr-6 mb-8">
       <span class="font-gotham font-bold text-xl text-stone-200">Menu</span>

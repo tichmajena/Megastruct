@@ -139,7 +139,7 @@
       <!-- <div class="w-1/4"></div> -->
       <HeadingTwo>Our Objectives</HeadingTwo>
     </div>
-    <Carousel name="{'objectives'}" items="{items}" />
+    <Carousel name={"objectives"} {items} />
 
     <!-- <nav>
       {#each objectives as item, i}
@@ -151,7 +151,7 @@
       {#key $page.url}
         {#if -1 < getPrev("objectives", $page.url.hash)}
           <a href="#{prevurl('objectives', $page.url.hash)}">
-            <button class="py-4 px-2 text-red-600"
+            <button on:click={getNext} class="py-4 px-2 text-red-600"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-12 w-12"
@@ -163,7 +163,8 @@
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
               </svg></button
             >
           </a>
@@ -182,7 +183,8 @@
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
               </svg></button
             >
           </a>

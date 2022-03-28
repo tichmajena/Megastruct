@@ -84,9 +84,9 @@
 <PageAnim>
   <Header bar_color="{'rgb(28 25 23)'}">
     <span slot="number">05</span>
-    <span slot="sub-t">Our Approach</span>
+    <span slot="sub-t">Our Work</span>
     <span slot="heading">Our Projects</span>
-    <span slot="sub-b">Our Mission</span>
+    <span slot="sub-b">Portfolio</span>
   </Header>
 
   <div class="w-full px-6 bg-stone-900 pb-36">
