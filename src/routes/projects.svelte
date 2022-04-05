@@ -82,7 +82,7 @@
 </script>
 
 <PageAnim>
-  <Header bar_color="{'rgb(28 25 23)'}">
+  <Header bar_color={"rgb(28 25 23)"}>
     <span slot="number">05</span>
     <span slot="sub-t">Our Work</span>
     <span slot="heading">Our Projects</span>
@@ -94,7 +94,7 @@
       <div class="max-w-screen-lg mx-auto py-8">
         <!--  -->
 
-        <Carousel name="{'project'}" items="{items}" />
+        <Carousel name={"project"} {items} />
 
         <div class="flex w-full mx-auto -mt-40">
           {#key $page.url}
@@ -112,7 +112,8 @@
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                      d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                    />
                   </svg></button
                 >
               </a>
@@ -131,7 +132,8 @@
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
                   </svg></button
                 >
               </a>
@@ -144,8 +146,7 @@
       >
         {#each projects as item, i}
           <li
-            class:text-white="{`#${getItemId('project', i)}` ===
-              $page.url.hash}"
+            class:text-white={`#${getItemId("project", i)}` === $page.url.hash}
             class="hover:text-stone-300 mb-1"
           >
             <a href="#{getItemId('project', i)}">{item.title.rendered}</a>

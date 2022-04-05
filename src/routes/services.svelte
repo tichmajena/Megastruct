@@ -30,10 +30,16 @@
   import { page } from "$app/stores";
 
   export let services;
+
   let hashes = {};
   let colors = ["red", "blue", "green", "yellow", "orange", "purple"];
+  console.log(services);
   const items = services.map((props, i) => ({
-    props: { service: props.title.rendered, content: props.content.rendered },
+    props: {
+      service: props.title.rendered,
+      content: props.content.rendered,
+      fimg_url: props.fimg_url,
+    },
     component: ServiceCard,
   }));
 

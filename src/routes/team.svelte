@@ -37,6 +37,7 @@
       name: props.title.rendered,
       content: props.content.rendered,
       position: props.position,
+      fimg_url: props.fimg_url,
     },
     component: TeamCard,
   }));
@@ -90,7 +91,7 @@
   <div class="w-full px-6">
     <div class="max-w-screen-lg mx-auto py-8">
       <!--  -->
-      <Carousel name="{'team'}" items="{items}" />
+      <Carousel name={"team"} {items} />
 
       <div class="flex w-3/4 mx-auto -mt-60 pt-20">
         {#key $page.url}
@@ -108,7 +109,8 @@
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                  />
                 </svg></button
               >
             </a>
@@ -127,7 +129,8 @@
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
                 </svg></button
               >
             </a>

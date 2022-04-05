@@ -36,18 +36,18 @@
   />
   <div class="mix-blend-multiply bg-gray-500 absolute inset-0" />
   <div class="container min-h-screen relative">
-    <div class="relativemd:top-20 top-10 md:left-0 -left-5 p-2 md:w-64 w-40">
+    <div class="relative md:top-20 top-10 md:left-0 -left-5 p-2 md:w-64 w-40">
       <img src={logo_white} alt="" />
     </div>
-    <div class="absolute bottom-25 right-0 w-fit " />
-    <div class="flex justify-end w-full">
-      <div class="opacity-50 text-5xl p-2">01</div>
+    <div class="absolute bottom-25 right-0 w-full " />
+    <div class="md:flex md:justify-end w-full">
+      <div class="opacity-50 text-5xl mt-8 p-2">01</div>
     </div>
-    <div class="flex justify-end">
-      <div class="border border-white w-1/3 -mr-40" />
+    <div class="md:flex md:justify-end relative">
+      <div class=" border border-white md:w-1/3 md:-mr-40 w-1/2 " />
     </div>
-    <div class="flex justify-end text-3xl p-2  ">
-      <div class="flex justify-end w-12 text-right">
+    <div class="md:flex md:justify-end text-3xl p-2  ">
+      <div class="md:flex md:justify-end w-12 text-right">
         Expert Engineering Solutions
       </div>
     </div>

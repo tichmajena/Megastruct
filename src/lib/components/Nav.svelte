@@ -32,7 +32,6 @@
     class="drawer-content flex flex-col "
     on:scroll={(e) => {
       $scroll_y = e.srcElement.scrollTop;
-      console.log("scrolling", e.srcElement.scrollTop);
     }}
   >
     <!-- Navbar -->

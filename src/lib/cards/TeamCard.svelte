@@ -7,16 +7,17 @@
         aperiam sit ipsum magni error blanditiis exercitationem esse dolores, sed
         quae fugit fugiat, possimus, asperiores eligendi consectetur quidem nisi?`;
   export let name;
+  export let fimg_url;
   export let position;
 </script>
 
 <li
-  id="{id}"
+  {id}
   class="w-3/4 flex md:flex-row flex-col shrink-0 h-screen pt-48 snap-center py-10 mr-12"
 >
   <div class="mr-10 mb-8">
     <div class="">
-      <img class="w-80" src="{logo_icon}" alt="" />
+      <img class="w-80" src={fimg_url} alt="" />
     </div>
   </div>
   <div class="">
