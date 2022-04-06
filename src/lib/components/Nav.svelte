@@ -58,7 +58,7 @@
       </div>
       <div class="flex-1 px-2 mx-2">
         <div
-          class="absolute top-0 left-20 p-2 bg-white rounded-b-sm shadow-md w-16"
+          class="absolute top-0 right-20 md:left-20 p-2 bg-white rounded-b-sm shadow-md w-16"
         >
           <img src={logo_icon} alt="" />
         </div>

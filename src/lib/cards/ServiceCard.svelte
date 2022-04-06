@@ -20,15 +20,15 @@
 
 <li
   {id}
-  class="w-full md:w-3/4 flex shrink-0 h-screen pt-48 snap-center py-10 mr-12"
+  class="w-full md:w-3/4 flex shrink-0 h-screen md:pt-48 snap-center md:py-10 pt-24 pb-5 mr-12 px-6"
 >
   <div class="flex md:flex-row flex-col">
-    <div class="mr-10 mb-10">
-      <div class="">
-        <img class="w-80" src={fimg_url} alt="" />
+    <div class="md:mr-5 md:mb-10 mb-3">
+      <div class="md:w-60 w-48 relative">
+        <img class="w-full aspect-square" src={fimg_url} alt="" />
       </div>
     </div>
-    <div class="">
+    <div class="pt-4">
       <div class="font-gotham flex flex-col mb-5">
         <span class="font-bold text-stone-900 text-2xl">{service}</span>
       </div>
@@ -36,6 +36,5 @@
         {@html content}
       </div>
     </div>
-    ooo
   </div>
 </li>

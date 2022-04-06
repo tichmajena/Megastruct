@@ -90,8 +90,8 @@
     <span slot="sub-b">OurExpertise</span>
   </Header>
 
-  <div class="w-full px-6">
-    <div class="max-w-screen-lg mx-auto py-8">
+  <div class="w-full">
+    <div class="mx-auto py-8">
       <!--  -->
       <Carousel name={"services"} {items} />
 
@@ -101,7 +101,7 @@
           <a href="#{getItemId('colors', i)}">{item}</a>
         </li>{/each}
     </nav> -->
-      <div class="flex w-3/4 mx-auto -mt-60 pt-20">
+      <div class="flex w-3/4 md:mx-auto -mt-60 pt-20 px-5">
         {#key $page.url}
           {#if -1 < getPrev("services", $page.url.hash)}
             <a href="#{prevurl('services', $page.url.hash)}">

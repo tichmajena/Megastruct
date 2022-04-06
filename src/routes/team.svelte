@@ -88,12 +88,12 @@
     <span slot="sub-b">Corporate Profiles</span>
   </Header>
 
-  <div class="w-full px-6">
-    <div class="max-w-screen-lg mx-auto py-8">
+  <div class="w-full ">
+    <div class="mx-auto py-8">
       <!--  -->
       <Carousel name={"team"} {items} />
 
-      <div class="flex w-3/4 mx-auto -mt-60 pt-20">
+      <div class="flex w-3/4 mx-auto -mt-60 pt-20 px-5">
         {#key $page.url}
           {#if -1 < getPrev("team", $page.url.hash)}
             <a href="#{prevurl('team', $page.url.hash)}">

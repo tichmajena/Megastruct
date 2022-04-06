@@ -8,10 +8,10 @@
 </script>
 
 <ul
-  class="flex gap-6 overflow-y-auto w-full snap-x snap-mandatory before:shrink-0 before:w-[30vw] after:shrink-0 after:w-[30vw] scroll-smooth scroll-mt-10 no-scrollbar"
+  class="flex gap-6 overflow-visible overflow-y-auto w-full snap-x snap-mandatory before:shrink-0 before:w-[30vw] after:shrink-0 after:w-[30vw] scroll-smooth scroll-mt-10 no-scrollbar"
 >
   {#each items as { props, component }, i}
-    <svelte:component this="{component}" {...props} id="{getItemId(name, i)}" />
+    <svelte:component this={component} {...props} id={getItemId(name, i)} />
   {/each}
 </ul>
 

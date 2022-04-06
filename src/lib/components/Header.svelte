@@ -5,7 +5,7 @@
 </script>
 
 <div
-  class=" w-full h-full bg-cover bg-center bg-red-500 relative bg-opacity-50 overflow-hidden"
+  class=" w-full bg-cover bg-center bg-red-500 relative bg-opacity-50 overflow-hidden"
 >
   <img
     src={bg_img}
