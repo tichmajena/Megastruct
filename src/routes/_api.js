@@ -1,5 +1,5 @@
 export const BASE = import.meta.env.VITE_BASE;
-const base = "https://megastruct.co.zw/cms/wp-json";
+const base = BASE;
 
 export async function getJSON(event, resource, data) {
   // user must have a cookie set
