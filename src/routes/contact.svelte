@@ -63,6 +63,14 @@
   }
 </script>
 
+<svelte:head>
+  <!-- <script
+    defer
+    async
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+  </script> -->
+</svelte:head>
+
 <PageAnim>
   <div class="w-full h-full bg-stone-300 pt-16">
     <iframe
