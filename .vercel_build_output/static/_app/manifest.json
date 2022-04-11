@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-d5265e26.js",
+    "file": "start-d5cd763a.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -9,7 +9,7 @@
     ],
     "dynamicImports": [
       "src/routes/__layout.svelte",
-      ".svelte-kit/runtime/components/error.svelte",
+      "src/routes/__error.svelte",
       "src/routes/index.svelte",
       "src/routes/projects.svelte",
       "src/routes/services.svelte",
@@ -29,7 +29,7 @@
       "_store-513f1709.js"
     ],
     "css": [
-      "assets/pages/__layout.svelte-effee72b.css"
+      "assets/pages/__layout.svelte-a9ae4fc6.css"
     ],
     "assets": [
       "assets/megastruct_logo_icon_red-eb186e6c.svg",
@@ -42,9 +42,9 @@
       "assets/fira-mono-latin-400-normal-e43b3538.woff2"
     ]
   },
-  ".svelte-kit/runtime/components/error.svelte": {
-    "file": "error.svelte-bb89ecee.js",
-    "src": ".svelte-kit/runtime/components/error.svelte",
+  "src/routes/__error.svelte": {
+    "file": "pages/__error.svelte-c9f638d7.js",
+    "src": "src/routes/__error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
@@ -52,7 +52,7 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-f2264b7f.js",
+    "file": "pages/index.svelte-4ec6353a.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -62,27 +62,27 @@
       "_sacred-heart-college-01-e738c59a.js",
       "_stores-2666f07b.js",
       "_store-513f1709.js",
-      "_PageAnim-a00f2767.js",
+      "_PageAnim-65fe9f02.js",
       "_singletons-d1fb5791.js"
     ],
     "css": [
       "assets/Carousel.svelte_svelte_type_style_lang-15ba052b.css"
     ],
     "assets": [
-      "assets/private-resident-d7ed37f1.jpg",
+      "assets/private-resident-3d61524a.jpg",
       "assets/megastruct_logo_white-a8b9bdc2.svg"
     ]
   },
   "src/routes/projects.svelte": {
-    "file": "pages/projects.svelte-1ebdf718.js",
+    "file": "pages/projects.svelte-4ea1c2d9.js",
     "src": "src/routes/projects.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_vendor-9e53104a.js",
-      "_Header-2174353c.js",
+      "_Header-5b8a7d25.js",
       "_sacred-heart-college-01-e738c59a.js",
-      "_PageAnim-a00f2767.js",
+      "_PageAnim-65fe9f02.js",
       "_stores-2666f07b.js"
     ],
     "css": [
@@ -91,14 +91,14 @@
     ]
   },
   "src/routes/services.svelte": {
-    "file": "pages/services.svelte-0ceb81b7.js",
+    "file": "pages/services.svelte-b7895b92.js",
     "src": "src/routes/services.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_vendor-9e53104a.js",
-      "_Header-2174353c.js",
-      "_PageAnim-a00f2767.js",
+      "_Header-5b8a7d25.js",
+      "_PageAnim-65fe9f02.js",
       "_stores-2666f07b.js"
     ],
     "css": [
@@ -106,27 +106,27 @@
     ]
   },
   "src/routes/contact.svelte": {
-    "file": "pages/contact.svelte-d101a245.js",
+    "file": "pages/contact.svelte-4c0ba1b1.js",
     "src": "src/routes/contact.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_vendor-9e53104a.js",
       "_env-859c48a7.js",
-      "_PageAnim-a00f2767.js",
+      "_PageAnim-65fe9f02.js",
       "_TextBlock-6a7fb23e.js"
     ]
   },
   "src/routes/about.svelte": {
-    "file": "pages/about.svelte-c1256943.js",
+    "file": "pages/about.svelte-b9ef43f6.js",
     "src": "src/routes/about.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_vendor-9e53104a.js",
       "_env-859c48a7.js",
-      "_Header-2174353c.js",
-      "_PageAnim-a00f2767.js",
+      "_Header-5b8a7d25.js",
+      "_PageAnim-65fe9f02.js",
       "_TextBlock-6a7fb23e.js",
       "_stores-2666f07b.js"
     ],
@@ -135,14 +135,14 @@
     ]
   },
   "src/routes/team.svelte": {
-    "file": "pages/team.svelte-cec215cf.js",
+    "file": "pages/team.svelte-61f7b795.js",
     "src": "src/routes/team.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_vendor-9e53104a.js",
-      "_Header-2174353c.js",
-      "_PageAnim-a00f2767.js",
+      "_Header-5b8a7d25.js",
+      "_PageAnim-65fe9f02.js",
       "_stores-2666f07b.js"
     ],
     "css": [
@@ -179,13 +179,13 @@
       "_vendor-9e53104a.js"
     ]
   },
-  "_PageAnim-a00f2767.js": {
-    "file": "chunks/PageAnim-a00f2767.js",
+  "_PageAnim-65fe9f02.js": {
+    "file": "chunks/PageAnim-65fe9f02.js",
     "imports": [
       "_vendor-9e53104a.js"
     ],
     "assets": [
-      "assets/pic-e42490af.jpg",
+      "assets/laf-f8b3e77c.jpg",
       "assets/megastruct_logo_icon_white-01-6af07ead.svg"
     ]
   },
@@ -195,8 +195,8 @@
       "assets/sacred-heart-college-01-3d7b399a.jpg"
     ]
   },
-  "_Header-2174353c.js": {
-    "file": "chunks/Header-2174353c.js",
+  "_Header-5b8a7d25.js": {
+    "file": "chunks/Header-5b8a7d25.js",
     "imports": [
       "_vendor-9e53104a.js"
     ],
@@ -204,7 +204,7 @@
       "assets/Carousel.svelte_svelte_type_style_lang-15ba052b.css"
     ],
     "assets": [
-      "assets/pexels-jeshootscom-834892 (1)-1dbcf9b7.jpg"
+      "assets/tools-2adcb8c0.jpg"
     ]
   },
   "_env-859c48a7.js": {

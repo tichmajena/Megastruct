@@ -1,5 +1,5 @@
 <script>
-  import bg_img from "$lib/assets/pic.jpg";
+  import bg_img from "$lib/assets/laf.jpg";
   import logo_icon from "$lib/assets/megastruct_logo_icon_white-01.svg";
   import ContactCard from "$lib/cards/ContactCard.svelte";
   //  style="background-image: url('{bg_img}');"

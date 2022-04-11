@@ -1,6 +1,6 @@
 <script>
   export let bar_color;
-  import bg_img from "$lib/assets/pexels-jeshootscom-834892 (1).jpg";
+  import bg_img from "$lib/assets/tools.jpg";
   //  style="background-image: url('{bg_img}');"
 </script>
 

@@ -1,6 +1,6 @@
 <script>
   import HeadingTwo from "./HeadingTwo.svelte";
-  import bg_img from "$lib/assets/pexels-jeshootscom-834892 (1).jpg";
+  import bg_img from "$lib/assets/tools.jpg";
 </script>
 
 <div class="w-full py-10">
