@@ -16,7 +16,7 @@
     >12 Travlos Rd, Avonlea
   </li>
   <li class="flex gap-7"><span />Harare</li>
-  <li class="flex gap-2">
+  <li class="flex gap-1">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-5 w-5"
@@ -34,10 +34,10 @@
   <li class="flex gap-7">
     <span />+263 772 846880
   </li>
-  <li class="flex gap-2">
+  <li class="flex gap-1">
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5"
+      class="h-5 w-5 mt-1"
       viewBox="0 0 20 20"
       fill="currentColor"
     >

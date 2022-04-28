@@ -131,8 +131,10 @@
   </div>
   <div class="drawer-side ">
     <label for="my-drawer-3" class="drawer-overlay" />
-    <ul class="menu p-4 overflow-y-auto w-80 bg-red-700">
+    <ul class="menu p-4 overflow-y-auto md:w-80 w-36 bg-red-700">
       <!-- Sidebar content here -->
+      <div class="text-4xl absolute right-0 top-0">x</div>
+
       <li><a sveltekit:prefetch href="/">Home</a></li>
       <li>
         <a sveltekit:prefetch href="/about">About</a>

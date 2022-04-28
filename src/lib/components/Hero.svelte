@@ -32,7 +32,7 @@
   <img
     src={bg_img}
     alt=""
-    class=" absolute inset-0 top-1/2 -translate-y-1/2 object-fill w-full h-full"
+    class=" absolute inset-0 top-1/2 -translate-y-1/2 object-cover w-full h-full"
   />
   <div class="mix-blend-multiply bg-gray-500 absolute inset-0" />
   <div class="container min-h-screen relative">
