@@ -13,8 +13,14 @@
   }
   export let fixed = false;
 
+  let showMenu = false;
+  $: console.log(showMenu);
   function clBackcolor(color) {
     let bgColor = color;
+  }
+
+  function toggleMenu() {
+    showMenu = !showMenu;
   }
 </script>
 
@@ -27,7 +33,12 @@
 </div> -->
 
 <div class="drawer h-screen w-full font-gotham text-white">
-  <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+  <input
+    id="my-drawer-3"
+    type="checkbox"
+    class="drawer-toggle"
+    bind:checked={showMenu}
+  />
   <div
     class="drawer-content flex flex-col "
     on:scroll={(e) => {
@@ -133,23 +144,24 @@
     <label for="my-drawer-3" class="drawer-overlay" />
     <ul class="menu p-4 overflow-y-auto md:w-80 w-36 bg-red-700">
       <!-- Sidebar content here -->
-      <div class="text-4xl absolute right-0 top-0">x</div>
 
-      <li><a sveltekit:prefetch href="/">Home</a></li>
+      <li><a on:click={toggleMenu} sveltekit:prefetch href="/">Home</a></li>
       <li>
-        <a sveltekit:prefetch href="/about">About</a>
+        <a on:click={toggleMenu} sveltekit:prefetch href="/about">About</a>
       </li>
       <li>
-        <a sveltekit:prefetch href="/services">Services</a>
+        <a on:click={toggleMenu} sveltekit:prefetch href="/services">Services</a
+        >
       </li>
       <li>
-        <a sveltekit:prefetch href="/team">Team</a>
+        <a on:click={toggleMenu} sveltekit:prefetch href="/team">Team</a>
       </li>
       <li>
-        <a sveltekit:prefetch href="/projects">Projects</a>
+        <a on:click={toggleMenu} sveltekit:prefetch href="/projects">Projects</a
+        >
       </li>
       <li>
-        <a sveltekit:prefetch href="/contact">Contact</a>
+        <a on:click={toggleMenu} sveltekit:prefetch href="/contact">Contact</a>
       </li>
     </ul>
   </div>
