@@ -30,6 +30,7 @@
   import { page } from "$app/stores";
 
   export let projects;
+
   let hashes = {};
   let colors = ["red", "blue", "green", "yellow", "orange", "purple"];
 
@@ -93,6 +94,7 @@
     <div class="xl:flex xl:gap-4 md:px-8">
       <div class="max-w-screen-lg mx-auto py-8">
         <!--  -->
+        <!-- <pre>{JSON.stringify(items, null, 2)}</pre> -->
 
         <Carousel name={"project"} {items} />
 

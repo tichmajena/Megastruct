@@ -1,5 +1,6 @@
 <script>
   import bg_img from "$lib/assets/sacred-heart-college-01.jpg";
+  import { browser } from "$app/env";
   import Carousel from "$lib/components/Carousel.svelte";
   import { Slidy } from "svelte-slidy";
 
@@ -78,42 +79,46 @@
 
   <div class="aspect-video w-full relative overflow-hidden">
     <!-- <img src="{image}" alt="" /> -->
-    <Slidy {...options} {slides}>
-      <button slot="arrow-left" class="btn bg-red-600 bg-opacity-70 border-none"
-        ><svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
+    {#if browser}
+      <Slidy {...options} {slides}>
+        <button
+          slot="arrow-left"
+          class="btn bg-red-600 bg-opacity-70 border-none"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg></button
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-          />
-        </svg></button
-      >
-      <button
-        slot="arrow-right"
-        class="btn bg-red-600 bg-opacity-70  border-none"
-        ><svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
+        <button
+          slot="arrow-right"
+          class="btn bg-red-600 bg-opacity-70  border-none"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            />
+          </svg></button
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M14 5l7 7m0 0l-7 7m7-7H3"
-          />
-        </svg></button
-      >
-    </Slidy>
+      </Slidy>
+    {/if}
   </div>
 </li>
 
