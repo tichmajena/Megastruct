@@ -72,17 +72,15 @@
       <span slot="heading"> Welcome </span>
       <span slot="content">
         <p class="font-bold text-stone-400 text-2xl">
-          MegaStruct leverages cutting edge engineering and technical theory
+          MegaStruct leverages cutting edge engineering and technical expertise
         </p>
         <p>
-          MegaStruct leverages cutting edge engineering and technical theory to
-          provide clients with the latest in innovative, cost effective and
-          sustainable design solutions. Our highly trained and professionally
-          registered staff members are experienced to cover all aspects of
-          engineering and project management. We use our years of engineering
-          experience to manage and execute complex projects in challenging
-          environments. These include; roads, water and sewer reticulation,
-          bridges, dams, water reservoirs, and sewage treatment plants.
+          MegaStruct leverages cutting edge engineering and technical expertise,
+          providing clients with innovative, cost effective and sustainable
+          design solutions. With years of collective engineering experience in
+          managing and executing projects in these environments; roads, water
+          and sewer reticulation, bridges, dams, water reservoirs, and sewage
+          treatment plants.
         </p>
       </span>
     </TextBlock>
@@ -90,9 +88,8 @@
   <QuoteBlock>
     <span slot="heading">Our Mission</span>
     <span slot="content"
-      >To deliver comprehensive and creative professional engineering design
-      solutions to meet our client needs and to enhance the communities where
-      our clients live and work.</span
+      >Delivering comprehensive engineering design solutions to meet client
+      needs and enhance communities.</span
     >
   </QuoteBlock>
   <!-- <TextImageBlock>
