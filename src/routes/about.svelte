@@ -25,6 +25,7 @@
   import HeadingTwo from "$lib/components/HeadingTwo.svelte";
   import { getItemId } from "$lib/components/Carousel.svelte";
   import { page } from "$app/stores";
+  import CarouselNav from "$lib/components/CarouselNav.svelte";
 
   let objectives = [
     "To change the way clients think about the cost of having premium engineering designs prepared by highly trained experts by delivering premium designs at radically fair prices.",
@@ -77,6 +78,8 @@
     props: { content: props, number: i + 1 },
     component: ObjectivesCard,
   }));
+
+  $: console.log($page.url);
 </script>
 
 <svelte:head>
@@ -147,7 +150,43 @@
           <a href="#{getItemId('objectives', i)}">{item}</a>
         </li>{/each}
     </nav> -->
-    <div class="flex w-3/4 mx-auto -mt-60 pt-20">
+    <div class="flex w-3/4 mx-auto -mt-60 pt-20 relative z-30">
+      <CarouselNav name="objectives" {items}>
+        <button slot="previous" class="py-4 px-2 text-red-600"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-12 w-12"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg></button
+        >
+        <button slot="next" class="py-4 px-2 text-red-600"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-12 w-12"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            />
+          </svg></button
+        >
+      </CarouselNav>
+
+      <!-- 
       {#key $page.url}
         {#if -1 < getPrev("objectives", $page.url.hash)}
           <a href="#{prevurl('objectives', $page.url.hash)}">
@@ -189,7 +228,7 @@
             >
           </a>
         {/if}
-      {/key}
+      {/key} -->
     </div>
   </div>
   <Footer />
