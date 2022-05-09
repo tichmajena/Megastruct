@@ -64,49 +64,68 @@
 
 <svelte:window bind:scrollY={y} bind:innerHeight={h} on:scroll={handleScroll} />
 <PageAnim>
-  <Carousel
-    loop={true}
-    interval={2000}
-    space={false}
-    auto={!manualmode}
-    name={"homeslider"}
-    {items}
-  />
-  <div class="relative z-30 -mt-60">
-    <CarouselNav on:manual={handleManual} name="homeslider" {items}>
-      <button slot="previous" class="py-4 px-2 text-white"
-        ><svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-12 w-12"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
+  <div
+    class=" w-full bg-cover bg-center bg-red-500 relative bg-opacity-50 overflow-hidden h-screen"
+  >
+    <div
+      class="absolute md:top-10 top-10 md:left-10 left-5 p-2 md:w-64 w-40 z-40"
+    >
+      <img src={logo_white} alt="" />
+    </div>
+    <Carousel
+      loop={true}
+      interval={5000}
+      space={false}
+      auto={!manualmode}
+      name={"homeslider"}
+      {items}
+    />
+
+    <div
+      class:bottom-16={$hide_menu === true}
+      class:hidden={$hide_menu === false}
+      class:relative={$hide_menu === true}
+      class:absolute={$hide_menu === false}
+      class="z-40"
+    >
+      <HeroNav />
+    </div>
+    <div class="absolute z-30 md:bottom-20 bottom-10 right-5">
+      <CarouselNav on:manual={handleManual} name="homeslider" {items}>
+        <button slot="previous" class="py-4 px-2 text-white"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-12 w-12"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg></button
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-          />
-        </svg></button
-      >
-      <button slot="next" class="py-4 px-2 text-white"
-        ><svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-12 w-12"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
+        <button slot="next" class="py-4 px-2 text-white"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-12 w-12"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            />
+          </svg></button
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M14 5l7 7m0 0l-7 7m7-7H3"
-          />
-        </svg></button
-      >
-    </CarouselNav>
+      </CarouselNav>
+    </div>
   </div>
 </PageAnim>
 
