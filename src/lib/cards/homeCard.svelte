@@ -23,7 +23,7 @@
     />
     <div class="mix-blend-multiply bg-gray-500 absolute inset-0" />
 
-    <div class="container  absolute bottom-60 right-20">
+    <div class="container absolute bottom-60 md:right-20 top-60 md:top-36">
       <div class="md:flex md:justify-end w-full">
         <div class="opacity-50 text-5xl mt-8 p-2">0{number}</div>
       </div>

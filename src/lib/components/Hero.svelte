@@ -1,10 +1,11 @@
 <script>
   // export let bar_color;
   // import bg_img from "$lib/assets/sacred-heart-college-01.jpg";
-  import bg_img from "$lib/assets/private-resident.jpg";
+  import bg_img from "$lib/assets/architect-engineer-office-desk-drawings-and-compu-2021-08-31-11-18-08-utc.jpeg";
   import civilE from "$lib/assets/Civil Engineering.jpeg";
+  import water from "$lib/assets/water.jpeg";
 
-  import construction from "$lib/assets/Constructio.jpg";
+  import construction from "$lib/assets/sconstruction.jpeg";
 
   import HeroNav from "./HeroNav.svelte";
   import logo_white from "$lib/assets/megastruct_logo_white.svg";
@@ -50,7 +51,7 @@
     },
     {
       text: "Water and waste water treatment and reticulation",
-      image: bg_img,
+      image: water,
     },
     {
       text: "Construction management ",
@@ -94,7 +95,7 @@
     </div>
     <div class="absolute z-30 md:bottom-20 bottom-10 right-5">
       <CarouselNav on:manual={handleManual} name="homeslider" {items}>
-        <button slot="previous" class="py-4 px-2 text-white"
+        <button slot="previous" class="py-4 px-2 text-white mb-8"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-12 w-12"
@@ -110,7 +111,7 @@
             />
           </svg></button
         >
-        <button slot="next" class="py-4 px-2 text-white"
+        <button slot="next" class="py-4 px-2 text-white mb-8"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-12 w-12"
