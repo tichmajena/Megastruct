@@ -71,12 +71,12 @@
 </script>
 
 {#if index > 0}
-  <a on:click={() => scrolla("prev")}>
+  <a href="/" on:click={() => scrolla("prev")}>
     <slot name="previous" />
   </a>
 {/if}
 {#if index < items.length - 1}
-  <a on:click={() => scrolla("next")}>
+  <a href="/" on:click={() => scrolla("next")}>
     <slot name="next" />
   </a>
 {/if}

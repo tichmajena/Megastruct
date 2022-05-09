@@ -11,7 +11,7 @@
       $hide_menu = false;
     }
   }
-  export let fixed = false;
+  // export let fixed = false;
 
   let showMenu = false;
   $: console.log(showMenu);
@@ -167,8 +167,8 @@
   </div>
 </div>
 
-<style>
+<!-- <style>
   .reset-style {
     background-color: brown;
   }
-</style>
+</style> -->
