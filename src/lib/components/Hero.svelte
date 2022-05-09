@@ -2,6 +2,8 @@
   export let bar_color;
   // import bg_img from "$lib/assets/sacred-heart-college-01.jpg";
   import bg_img from "$lib/assets/private-resident.jpg";
+  import civilE from "$lib/assets/Civil Engineering.jpeg";
+
   import construction from "$lib/assets/Constructio.jpg";
 
   import HeroNav from "./HeroNav.svelte";
@@ -44,7 +46,7 @@
     },
     {
       text: "Civil Engineering",
-      image: bg_img,
+      image: civilE,
     },
     {
       text: "Water and waste water treatment and reticulation",
