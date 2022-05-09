@@ -1,10 +1,10 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-d5cd763a.js",
+    "file": "start-da709318.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
-      "_vendor-9e53104a.js",
+      "_vendor-b0c17138.js",
       "_singletons-d1fb5791.js"
     ],
     "dynamicImports": [
@@ -19,17 +19,17 @@
     ]
   },
   "src/routes/__layout.svelte": {
-    "file": "pages/__layout.svelte-79531725.js",
+    "file": "pages/__layout.svelte-6e7f43da.js",
     "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-9e53104a.js",
-      "_stores-2666f07b.js",
-      "_store-513f1709.js"
+      "_vendor-b0c17138.js",
+      "_stores-94e7840b.js",
+      "_store-93a27462.js"
     ],
     "css": [
-      "assets/pages/__layout.svelte-a9ae4fc6.css"
+      "assets/pages/__layout.svelte-0dff1443.css"
     ],
     "assets": [
       "assets/megastruct_logo_icon_red-eb186e6c.svg",
@@ -43,117 +43,112 @@
     ]
   },
   "src/routes/__error.svelte": {
-    "file": "pages/__error.svelte-c9f638d7.js",
+    "file": "pages/__error.svelte-9a4e96d8.js",
     "src": "src/routes/__error.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-9e53104a.js"
+      "_vendor-b0c17138.js"
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-4ec6353a.js",
+    "file": "pages/index.svelte-2d2a5298.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-9e53104a.js",
-      "_TextBlock-6a7fb23e.js",
+      "_vendor-b0c17138.js",
+      "_Carousel-b944f413.js",
+      "_TextBlock-0abfbc2f.js",
       "_sacred-heart-college-01-e738c59a.js",
-      "_stores-2666f07b.js",
-      "_store-513f1709.js",
-      "_PageAnim-65fe9f02.js",
+      "_stores-94e7840b.js",
+      "_store-93a27462.js",
+      "_Footer-21dfc7ec.js",
+      "_CarouselNav-d726ec56.js",
       "_singletons-d1fb5791.js"
-    ],
-    "css": [
-      "assets/Carousel.svelte_svelte_type_style_lang-15ba052b.css"
     ],
     "assets": [
       "assets/private-resident-3d61524a.jpg",
+      "assets/Constructio-d47fc416.jpg",
       "assets/megastruct_logo_white-a8b9bdc2.svg"
     ]
   },
   "src/routes/projects.svelte": {
-    "file": "pages/projects.svelte-4ea1c2d9.js",
+    "file": "pages/projects.svelte-46d8823f.js",
     "src": "src/routes/projects.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-9e53104a.js",
-      "_Header-5b8a7d25.js",
+      "_vendor-b0c17138.js",
+      "_Header-de629f2f.js",
+      "_Carousel-b944f413.js",
       "_sacred-heart-college-01-e738c59a.js",
-      "_PageAnim-65fe9f02.js",
-      "_stores-2666f07b.js"
+      "_Footer-21dfc7ec.js",
+      "_stores-94e7840b.js"
     ],
     "css": [
-      "assets/pages/projects.svelte-73cb8d6f.css",
-      "assets/Carousel.svelte_svelte_type_style_lang-15ba052b.css"
+      "assets/pages/projects.svelte-73cb8d6f.css"
     ]
   },
   "src/routes/services.svelte": {
-    "file": "pages/services.svelte-b7895b92.js",
+    "file": "pages/services.svelte-5e333f0d.js",
     "src": "src/routes/services.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-9e53104a.js",
-      "_Header-5b8a7d25.js",
-      "_PageAnim-65fe9f02.js",
-      "_stores-2666f07b.js"
-    ],
-    "css": [
-      "assets/Carousel.svelte_svelte_type_style_lang-15ba052b.css"
+      "_vendor-b0c17138.js",
+      "_Header-de629f2f.js",
+      "_Carousel-b944f413.js",
+      "_Footer-21dfc7ec.js",
+      "_stores-94e7840b.js"
     ]
   },
   "src/routes/contact.svelte": {
-    "file": "pages/contact.svelte-4c0ba1b1.js",
+    "file": "pages/contact.svelte-7ac29dc5.js",
     "src": "src/routes/contact.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-9e53104a.js",
+      "_vendor-b0c17138.js",
       "_env-859c48a7.js",
-      "_PageAnim-65fe9f02.js",
-      "_TextBlock-6a7fb23e.js"
+      "_Footer-21dfc7ec.js",
+      "_TextBlock-0abfbc2f.js"
     ]
   },
   "src/routes/about.svelte": {
-    "file": "pages/about.svelte-b9ef43f6.js",
+    "file": "pages/about.svelte-bd55673f.js",
     "src": "src/routes/about.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-9e53104a.js",
+      "_vendor-b0c17138.js",
       "_env-859c48a7.js",
-      "_Header-5b8a7d25.js",
-      "_PageAnim-65fe9f02.js",
-      "_TextBlock-6a7fb23e.js",
-      "_stores-2666f07b.js"
-    ],
-    "css": [
-      "assets/Carousel.svelte_svelte_type_style_lang-15ba052b.css"
+      "_Header-de629f2f.js",
+      "_Footer-21dfc7ec.js",
+      "_TextBlock-0abfbc2f.js",
+      "_Carousel-b944f413.js",
+      "_stores-94e7840b.js",
+      "_CarouselNav-d726ec56.js"
     ]
   },
   "src/routes/team.svelte": {
-    "file": "pages/team.svelte-61f7b795.js",
+    "file": "pages/team.svelte-c050738f.js",
     "src": "src/routes/team.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-9e53104a.js",
-      "_Header-5b8a7d25.js",
-      "_PageAnim-65fe9f02.js",
-      "_stores-2666f07b.js"
-    ],
-    "css": [
-      "assets/Carousel.svelte_svelte_type_style_lang-15ba052b.css"
+      "_vendor-b0c17138.js",
+      "_Header-de629f2f.js",
+      "_Carousel-b944f413.js",
+      "_Footer-21dfc7ec.js",
+      "_stores-94e7840b.js"
     ],
     "assets": [
       "assets/profile_blank-bbb8a2d1.jpg"
     ]
   },
-  "_vendor-9e53104a.js": {
-    "file": "chunks/vendor-9e53104a.js",
+  "_vendor-b0c17138.js": {
+    "file": "chunks/vendor-b0c17138.js",
     "css": [
       "assets/vendor-eb1b8b61.css"
     ]
@@ -161,32 +156,41 @@
   "_singletons-d1fb5791.js": {
     "file": "chunks/singletons-d1fb5791.js"
   },
-  "_stores-2666f07b.js": {
-    "file": "chunks/stores-2666f07b.js",
+  "_stores-94e7840b.js": {
+    "file": "chunks/stores-94e7840b.js",
     "imports": [
-      "_vendor-9e53104a.js"
+      "_vendor-b0c17138.js"
     ]
   },
-  "_store-513f1709.js": {
-    "file": "chunks/store-513f1709.js",
+  "_store-93a27462.js": {
+    "file": "chunks/store-93a27462.js",
     "imports": [
-      "_vendor-9e53104a.js"
+      "_vendor-b0c17138.js"
     ]
   },
-  "_TextBlock-6a7fb23e.js": {
-    "file": "chunks/TextBlock-6a7fb23e.js",
+  "_Carousel-b944f413.js": {
+    "file": "chunks/Carousel-b944f413.js",
     "imports": [
-      "_vendor-9e53104a.js"
+      "_vendor-b0c17138.js"
+    ],
+    "css": [
+      "assets/Carousel-421d1739.css"
     ]
   },
-  "_PageAnim-65fe9f02.js": {
-    "file": "chunks/PageAnim-65fe9f02.js",
+  "_TextBlock-0abfbc2f.js": {
+    "file": "chunks/TextBlock-0abfbc2f.js",
     "imports": [
-      "_vendor-9e53104a.js"
+      "_vendor-b0c17138.js"
+    ]
+  },
+  "_Footer-21dfc7ec.js": {
+    "file": "chunks/Footer-21dfc7ec.js",
+    "imports": [
+      "_vendor-b0c17138.js"
     ],
     "assets": [
       "assets/laf-f8b3e77c.jpg",
-      "assets/megastruct_logo_icon_white-01-6af07ead.svg"
+      "assets/megastruct_logo_icon_white-01-71afbce8.svg"
     ]
   },
   "_sacred-heart-college-01-e738c59a.js": {
@@ -195,13 +199,18 @@
       "assets/sacred-heart-college-01-3d7b399a.jpg"
     ]
   },
-  "_Header-5b8a7d25.js": {
-    "file": "chunks/Header-5b8a7d25.js",
+  "_CarouselNav-d726ec56.js": {
+    "file": "chunks/CarouselNav-d726ec56.js",
     "imports": [
-      "_vendor-9e53104a.js"
-    ],
-    "css": [
-      "assets/Carousel.svelte_svelte_type_style_lang-15ba052b.css"
+      "_vendor-b0c17138.js",
+      "_stores-94e7840b.js",
+      "_Carousel-b944f413.js"
+    ]
+  },
+  "_Header-de629f2f.js": {
+    "file": "chunks/Header-de629f2f.js",
+    "imports": [
+      "_vendor-b0c17138.js"
     ],
     "assets": [
       "assets/tools-2adcb8c0.jpg"

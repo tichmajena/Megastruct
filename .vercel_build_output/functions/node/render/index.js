@@ -1636,10 +1636,10 @@ var init_install_fetch = __esm({
           [PullSteps](readRequest) {
             const stream = this._controlledReadableByteStream;
             if (this._queueTotalSize > 0) {
-              const entry6 = this._queue.shift();
-              this._queueTotalSize -= entry6.byteLength;
+              const entry7 = this._queue.shift();
+              this._queueTotalSize -= entry7.byteLength;
               ReadableByteStreamControllerHandleQueueDrain(this);
-              const view = new Uint8Array(entry6.buffer, entry6.byteOffset, entry6.byteLength);
+              const view = new Uint8Array(entry7.buffer, entry7.byteOffset, entry7.byteLength);
               readRequest._chunkSteps(view);
               return;
             }
@@ -4211,13 +4211,13 @@ var init_install_fetch = __esm({
         }
         function convertTransformer(original, context) {
           assertDictionary(original, context);
-          const flush2 = original === null || original === void 0 ? void 0 : original.flush;
+          const flush = original === null || original === void 0 ? void 0 : original.flush;
           const readableType = original === null || original === void 0 ? void 0 : original.readableType;
           const start = original === null || original === void 0 ? void 0 : original.start;
           const transform = original === null || original === void 0 ? void 0 : original.transform;
           const writableType = original === null || original === void 0 ? void 0 : original.writableType;
           return {
-            flush: flush2 === void 0 ? void 0 : convertTransformerFlushCallback(flush2, original, `${context} has member 'flush' that`),
+            flush: flush === void 0 ? void 0 : convertTransformerFlushCallback(flush, original, `${context} has member 'flush' that`),
             readableType,
             start: start === void 0 ? void 0 : convertTransformerStartCallback(start, original, `${context} has member 'start' that`),
             transform: transform === void 0 ? void 0 : convertTransformerTransformCallback(transform, original, `${context} has member 'transform' that`),
@@ -5417,7 +5417,7 @@ var init_install_fetch = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-227ab1fb.js
+// .svelte-kit/output/server/chunks/index-03b14502.js
 function noop2() {
 }
 function run(fn) {
@@ -5439,12 +5439,14 @@ function subscribe(store, ...callbacks) {
   const unsub = store.subscribe(...callbacks);
   return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
 }
-function null_to_empty(value) {
-  return value == null ? "" : value;
-}
 function set_store_value(store, ret, value) {
   store.set(value);
   return ret;
+}
+function custom_event(type, detail, bubbles = false) {
+  const e2 = document.createEvent("CustomEvent");
+  e2.initCustomEvent(type, bubbles, false, detail);
+  return e2;
 }
 function set_current_component(component) {
   current_component = component;
@@ -5454,64 +5456,23 @@ function get_current_component() {
     throw new Error("Function called outside component initialization");
   return current_component;
 }
+function createEventDispatcher() {
+  const component = get_current_component();
+  return (type, detail) => {
+    const callbacks = component.$$.callbacks[type];
+    if (callbacks) {
+      const event = custom_event(type, detail);
+      callbacks.slice().forEach((fn) => {
+        fn.call(component, event);
+      });
+    }
+  };
+}
 function setContext(key2, context) {
   get_current_component().$$.context.set(key2, context);
 }
 function getContext(key2) {
   return get_current_component().$$.context.get(key2);
-}
-function schedule_update() {
-  if (!update_scheduled) {
-    update_scheduled = true;
-    resolved_promise.then(flush);
-  }
-}
-function tick() {
-  schedule_update();
-  return resolved_promise;
-}
-function add_render_callback(fn) {
-  render_callbacks.push(fn);
-}
-function flush() {
-  const saved_component = current_component;
-  do {
-    while (flushidx < dirty_components.length) {
-      const component = dirty_components[flushidx];
-      flushidx++;
-      set_current_component(component);
-      update(component.$$);
-    }
-    set_current_component(null);
-    dirty_components.length = 0;
-    flushidx = 0;
-    while (binding_callbacks.length)
-      binding_callbacks.pop()();
-    for (let i2 = 0; i2 < render_callbacks.length; i2 += 1) {
-      const callback = render_callbacks[i2];
-      if (!seen_callbacks.has(callback)) {
-        seen_callbacks.add(callback);
-        callback();
-      }
-    }
-    render_callbacks.length = 0;
-  } while (dirty_components.length);
-  while (flush_callbacks.length) {
-    flush_callbacks.pop()();
-  }
-  update_scheduled = false;
-  seen_callbacks.clear();
-  set_current_component(saved_component);
-}
-function update($$) {
-  if ($$.fragment !== null) {
-    $$.update();
-    run_all($$.before_update);
-    const dirty = $$.dirty;
-    $$.dirty = [-1];
-    $$.fragment && $$.fragment.p($$.ctx, dirty);
-    $$.after_update.forEach(add_render_callback);
-  }
 }
 function escape(html) {
   return String(html).replace(/["'&<>]/g, (match) => escaped[match]);
@@ -5556,7 +5517,7 @@ function create_ssr_component(fn) {
       return {
         html,
         css: {
-          code: Array.from(result.css).map((css8) => css8.code).join("\n"),
+          code: Array.from(result.css).map((css9) => css9.code).join("\n"),
           map: null
         },
         head: result.title + result.head
@@ -5570,17 +5531,10 @@ function add_attribute(name, value, boolean) {
     return "";
   return ` ${name}${value === true && boolean_attributes.has(name) ? "" : `=${typeof value === "string" ? JSON.stringify(escape(value)) : `"${value}"`}`}`;
 }
-var current_component, dirty_components, binding_callbacks, render_callbacks, flush_callbacks, resolved_promise, update_scheduled, seen_callbacks, flushidx, boolean_attributes, escaped, missing_component, on_destroy;
-var init_index_227ab1fb = __esm({
-  ".svelte-kit/output/server/chunks/index-227ab1fb.js"() {
-    dirty_components = [];
-    binding_callbacks = [];
-    render_callbacks = [];
-    flush_callbacks = [];
-    resolved_promise = Promise.resolve();
-    update_scheduled = false;
-    seen_callbacks = /* @__PURE__ */ new Set();
-    flushidx = 0;
+var current_component, boolean_attributes, escaped, missing_component, on_destroy;
+var init_index_03b14502 = __esm({
+  ".svelte-kit/output/server/chunks/index-03b14502.js"() {
+    Promise.resolve();
     boolean_attributes = /* @__PURE__ */ new Set([
       "allowfullscreen",
       "allowpaymentrequest",
@@ -5730,11 +5684,11 @@ var require_cookie = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/stores-3a4a2cf8.js
+// .svelte-kit/output/server/chunks/stores-5eed77e0.js
 var getStores, page;
-var init_stores_3a4a2cf8 = __esm({
-  ".svelte-kit/output/server/chunks/stores-3a4a2cf8.js"() {
-    init_index_227ab1fb();
+var init_stores_5eed77e0 = __esm({
+  ".svelte-kit/output/server/chunks/stores-5eed77e0.js"() {
+    init_index_03b14502();
     getStores = () => {
       const stores = getContext("__svelte__");
       return {
@@ -5763,7 +5717,7 @@ var init_stores_3a4a2cf8 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/store-5730a654.js
+// .svelte-kit/output/server/chunks/store-eae3d20c.js
 function writable2(value, start = noop2) {
   let stop;
   const subscribers = /* @__PURE__ */ new Set();
@@ -5785,7 +5739,7 @@ function writable2(value, start = noop2) {
       }
     }
   }
-  function update2(fn) {
+  function update(fn) {
     set(fn(value));
   }
   function subscribe2(run2, invalidate = noop2) {
@@ -5803,12 +5757,12 @@ function writable2(value, start = noop2) {
       }
     };
   }
-  return { set, update: update2, subscribe: subscribe2 };
+  return { set, update, subscribe: subscribe2 };
 }
 var subscriber_queue2, hide_menu, scroll_y;
-var init_store_5730a654 = __esm({
-  ".svelte-kit/output/server/chunks/store-5730a654.js"() {
-    init_index_227ab1fb();
+var init_store_eae3d20c = __esm({
+  ".svelte-kit/output/server/chunks/store-eae3d20c.js"() {
+    init_index_03b14502();
     subscriber_queue2 = [];
     hide_menu = writable2(false);
     scroll_y = writable2(0);
@@ -5823,9 +5777,9 @@ __export(layout_svelte_exports, {
 var logo_icon, Nav, _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
-    init_index_227ab1fb();
-    init_stores_3a4a2cf8();
-    init_store_5730a654();
+    init_index_03b14502();
+    init_stores_5eed77e0();
+    init_store_eae3d20c();
     logo_icon = "/_app/assets/megastruct_logo_icon_red-eb186e6c.svg";
     Nav = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $hide_menu, $$unsubscribe_hide_menu;
@@ -5835,6 +5789,7 @@ var init_layout_svelte = __esm({
       $$unsubscribe_page = subscribe(page, (value) => $page = value);
       $$unsubscribe_scroll_y = subscribe(scroll_y, (value) => value);
       let { fixed = false } = $$props;
+      let showMenu = false;
       if ($$props.fixed === void 0 && $$bindings.fixed && fixed !== void 0)
         $$bindings.fixed(fixed);
       {
@@ -5846,12 +5801,15 @@ var init_layout_svelte = __esm({
           }
         }
       }
+      {
+        console.log(showMenu);
+      }
       $$unsubscribe_hide_menu();
       $$unsubscribe_page();
       $$unsubscribe_scroll_y();
       return `
 
-<div class="${"drawer h-screen w-full font-gotham text-white"}"><input id="${"my-drawer-3"}" type="${"checkbox"}" class="${"drawer-toggle"}">
+<div class="${"drawer h-screen w-full font-gotham text-white"}"><input id="${"my-drawer-3"}" type="${"checkbox"}" class="${"drawer-toggle"}"${add_attribute("checked", showMenu, 1)}>
   <div class="${"drawer-content flex flex-col "}">
 
     <div class="${[
@@ -5894,7 +5852,8 @@ var init_layout_svelte = __esm({
     
     ${slots.default ? slots.default({}) : ``}</div>
   <div class="${"drawer-side "}"><label for="${"my-drawer-3"}" class="${"drawer-overlay"}"></label>
-    <ul class="${"menu p-4 overflow-y-auto w-80 bg-red-700"}">
+    <ul class="${"menu p-4 overflow-y-auto md:w-80 w-36 bg-red-700"}">
+
       <li><a sveltekit:prefetch href="${"/"}">Home</a></li>
       <li><a sveltekit:prefetch href="${"/about"}">About</a></li>
       <li><a sveltekit:prefetch href="${"/services"}">Services</a></li>
@@ -5926,9 +5885,9 @@ var entry, js, css;
 var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     init_layout_svelte();
-    entry = "pages/__layout.svelte-79531725.js";
-    js = ["pages/__layout.svelte-79531725.js", "chunks/vendor-9e53104a.js", "chunks/stores-2666f07b.js", "chunks/store-513f1709.js"];
-    css = ["assets/pages/__layout.svelte-a9ae4fc6.css", "assets/vendor-eb1b8b61.css"];
+    entry = "pages/__layout.svelte-6e7f43da.js";
+    js = ["pages/__layout.svelte-6e7f43da.js", "chunks/vendor-b0c17138.js", "chunks/stores-94e7840b.js", "chunks/store-93a27462.js"];
+    css = ["assets/pages/__layout.svelte-0dff1443.css", "assets/vendor-eb1b8b61.css"];
   }
 });
 
@@ -5946,7 +5905,7 @@ function load({ error: error2, status }) {
 var _error;
 var init_error_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__error.svelte.js"() {
-    init_index_227ab1fb();
+    init_index_03b14502();
     _error = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { title } = $$props;
       if ($$props.title === void 0 && $$bindings.title && title !== void 0)
@@ -5968,35 +5927,17 @@ var entry2, js2, css2;
 var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     init_error_svelte();
-    entry2 = "pages/__error.svelte-c9f638d7.js";
-    js2 = ["pages/__error.svelte-c9f638d7.js", "chunks/vendor-9e53104a.js"];
+    entry2 = "pages/__error.svelte-9a4e96d8.js";
+    js2 = ["pages/__error.svelte-9a4e96d8.js", "chunks/vendor-b0c17138.js"];
     css2 = ["assets/vendor-eb1b8b61.css"];
   }
 });
 
-// .svelte-kit/output/server/chunks/Header-c341ab16.js
-var css3, getItemId, Carousel, bg_img, Header;
-var init_Header_c341ab16 = __esm({
-  ".svelte-kit/output/server/chunks/Header-c341ab16.js"() {
-    init_index_227ab1fb();
-    css3 = {
-      code: ".no-scrollbar.svelte-1w8nh4g::-webkit-scrollbar{display:none}.no-scrollbar.svelte-1w8nh4g{-ms-overflow-style:none;scrollbar-width:none}",
-      map: null
-    };
-    getItemId = (name, i2) => `${name}-item-${i2}`;
-    Carousel = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { items = [] } = $$props;
-      let { name = "" } = $$props;
-      if ($$props.items === void 0 && $$bindings.items && items !== void 0)
-        $$bindings.items(items);
-      if ($$props.name === void 0 && $$bindings.name && name !== void 0)
-        $$bindings.name(name);
-      $$result.css.add(css3);
-      return `<ul class="${"flex gap-6 overflow-visible overflow-y-auto w-full snap-x snap-mandatory before:shrink-0 before:w-[30vw] after:shrink-0 after:w-[30vw] scroll-smooth scroll-mt-10 no-scrollbar svelte-1w8nh4g"}">${each(items, ({ props, component }, i2) => {
-        return `${validate_component(component || missing_component, "svelte:component").$$render($$result, Object.assign(props, { id: getItemId(name, i2) }), {}, {})}`;
-      })}
-</ul>`;
-    });
+// .svelte-kit/output/server/chunks/Header-42a253c3.js
+var bg_img, Header;
+var init_Header_42a253c3 = __esm({
+  ".svelte-kit/output/server/chunks/Header-42a253c3.js"() {
+    init_index_03b14502();
     bg_img = "/_app/assets/tools-2adcb8c0.jpg";
     Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { bar_color } = $$props;
@@ -6014,6 +5955,53 @@ var init_Header_c341ab16 = __esm({
   }
 });
 
+// .svelte-kit/output/server/chunks/Carousel-5c842695.js
+var css3, getItemId, Carousel;
+var init_Carousel_5c842695 = __esm({
+  ".svelte-kit/output/server/chunks/Carousel-5c842695.js"() {
+    init_index_03b14502();
+    css3 = {
+      code: ".no-scrollbar.svelte-1w8nh4g::-webkit-scrollbar{display:none}.no-scrollbar.svelte-1w8nh4g{-ms-overflow-style:none;scrollbar-width:none}",
+      map: null
+    };
+    getItemId = (name, i2) => `${name}-item-${i2 + 1}`;
+    Carousel = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { items = [] } = $$props;
+      let { name = "" } = $$props;
+      let { space = true } = $$props;
+      let { auto = false } = $$props;
+      let { autoscroll } = $$props;
+      let { interval = 2e3 } = $$props;
+      let { loop = false } = $$props;
+      if ($$props.items === void 0 && $$bindings.items && items !== void 0)
+        $$bindings.items(items);
+      if ($$props.name === void 0 && $$bindings.name && name !== void 0)
+        $$bindings.name(name);
+      if ($$props.space === void 0 && $$bindings.space && space !== void 0)
+        $$bindings.space(space);
+      if ($$props.auto === void 0 && $$bindings.auto && auto !== void 0)
+        $$bindings.auto(auto);
+      if ($$props.autoscroll === void 0 && $$bindings.autoscroll && autoscroll !== void 0)
+        $$bindings.autoscroll(autoscroll);
+      if ($$props.interval === void 0 && $$bindings.interval && interval !== void 0)
+        $$bindings.interval(interval);
+      if ($$props.loop === void 0 && $$bindings.loop && loop !== void 0)
+        $$bindings.loop(loop);
+      $$result.css.add(css3);
+      {
+        {
+          if (auto === false)
+            clearInterval(autoscroll);
+        }
+      }
+      return `<ul class="${"flex overflow-visible overflow-y-auto w-full snap-x snap-mandatory before:shrink-0 after:shrink-0 scroll-smooth scroll-mt-10 no-scrollbar " + escape(space ? "after:w-[30vw] before:w-[30vw] gap-6" : "") + " svelte-1w8nh4g"}">${each(items, ({ props, component }, i2) => {
+        return `${validate_component(component || missing_component, "svelte:component").$$render($$result, Object.assign(props, { id: getItemId(name, i2) }), {}, {})}`;
+      })}
+</ul>`;
+    });
+  }
+});
+
 // .svelte-kit/output/server/chunks/sacred-heart-college-01-e738c59a.js
 var bg_img2;
 var init_sacred_heart_college_01_e738c59a = __esm({
@@ -6022,22 +6010,25 @@ var init_sacred_heart_college_01_e738c59a = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/PageAnim-d6943d34.js
-var bg_img3, logo_icon2, ContactCard, Footer, PageAnim;
-var init_PageAnim_d6943d34 = __esm({
-  ".svelte-kit/output/server/chunks/PageAnim-d6943d34.js"() {
-    init_index_227ab1fb();
+// .svelte-kit/output/server/chunks/Footer-d37f1bf0.js
+var PageAnim, bg_img3, logo_icon2, ContactCard, Footer;
+var init_Footer_d37f1bf0 = __esm({
+  ".svelte-kit/output/server/chunks/Footer-d37f1bf0.js"() {
+    init_index_03b14502();
+    PageAnim = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      return `<div>${slots.default ? slots.default({}) : ``}</div>`;
+    });
     bg_img3 = "/_app/assets/laf-f8b3e77c.jpg";
-    logo_icon2 = "/_app/assets/megastruct_logo_icon_white-01-6af07ead.svg";
+    logo_icon2 = "/_app/assets/megastruct_logo_icon_white-01-71afbce8.svg";
     ContactCard = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `<ul class="${"font-gotham mt-4"}"><li class="${"flex gap-2"}"><span><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-5 w-5"}" viewBox="${"0 0 20 20"}" fill="${"currentColor"}"><path fill-rule="${"evenodd"}" d="${"M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"}" clip-rule="${"evenodd"}"></path></svg></span>12 Travlos Rd, Avonlea
   </li>
   <li class="${"flex gap-7"}"><span></span>Harare</li>
-  <li class="${"flex gap-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-5 w-5"}" viewBox="${"0 0 20 20"}" fill="${"currentColor"}"><path d="${"M14.414 7l3.293-3.293a1 1 0 00-1.414-1.414L13 5.586V4a1 1 0 10-2 0v4.003a.996.996 0 00.617.921A.997.997 0 0012 9h4a1 1 0 100-2h-1.586z"}"></path><path d="${"M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"}"></path></svg><span></span>+263 242 302654
+  <li class="${"flex gap-1"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-5 w-5"}" viewBox="${"0 0 20 20"}" fill="${"currentColor"}"><path d="${"M14.414 7l3.293-3.293a1 1 0 00-1.414-1.414L13 5.586V4a1 1 0 10-2 0v4.003a.996.996 0 00.617.921A.997.997 0 0012 9h4a1 1 0 100-2h-1.586z"}"></path><path d="${"M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"}"></path></svg><span></span>+263 242 302654
   </li>
   <li class="${"flex gap-7"}"><span></span>+263 772 846880
   </li>
-  <li class="${"flex gap-2"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-5 w-5"}" viewBox="${"0 0 20 20"}" fill="${"currentColor"}"><path d="${"M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"}"></path><path d="${"M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"}"></path></svg><span></span>info@megastruct.co.zw
+  <li class="${"flex gap-1"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-5 w-5 mt-1"}" viewBox="${"0 0 20 20"}" fill="${"currentColor"}"><path d="${"M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"}"></path><path d="${"M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"}"></path></svg><span></span>info@megastruct.co.zw
   </li></ul>`;
     });
     Footer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -6065,9 +6056,6 @@ var init_PageAnim_d6943d34 = __esm({
     <div class="${"font-gotham text-sm text-stone-500 my-2"}">Handcrafted by Imajenation Media
     </div></div></div>`;
     });
-    PageAnim = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      return `<div>${slots.default ? slots.default({}) : ``}</div>`;
-    });
   }
 });
 
@@ -6086,225 +6074,15 @@ function getPrev(name, hash2) {
   i2 = i2 - 1;
   return i2;
 }
-var css$1, Slidy, css4, ProjectCard, Projects;
+var css4, ProjectCard, Projects;
 var init_projects_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/projects.svelte.js"() {
-    init_index_227ab1fb();
-    init_Header_c341ab16();
+    init_index_03b14502();
+    init_Header_42a253c3();
+    init_Carousel_5c842695();
     init_sacred_heart_college_01_e738c59a();
-    init_PageAnim_d6943d34();
-    init_stores_3a4a2cf8();
-    css$1 = {
-      code: "#loader.svelte-o9i0eo.svelte-o9i0eo.svelte-o9i0eo{display:flex;width:100%;height:100%;align-items:center;justify-content:center;position:absolute}.slidy.svelte-o9i0eo.svelte-o9i0eo.svelte-o9i0eo{display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;width:var(--wrapw);height:var(--wraph);outline:0;margin:auto}.slidy.svelte-o9i0eo ul.svelte-o9i0eo.svelte-o9i0eo{display:flex;align-items:center;justify-content:center;list-style:none;margin:0;border:0;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-user-select:none}.slidy-ul.svelte-o9i0eo.svelte-o9i0eo.svelte-o9i0eo{width:100%;height:100%;padding:var(--wrapp);position:relative;touch-action:pan-y;will-change:transform}.slidy-ul.svelte-o9i0eo>.svelte-o9i0eo+.svelte-o9i0eo{margin:var(--slideg)}.slidy.loaded.svelte-o9i0eo .slidy-ul li.svelte-o9i0eo.svelte-o9i0eo{opacity:1}.slidy.axisy.svelte-o9i0eo .slidy-ul.svelte-o9i0eo.svelte-o9i0eo{flex-direction:column}.slidy-ul.svelte-o9i0eo li.svelte-o9i0eo.svelte-o9i0eo{flex:1 0 auto;position:relative;overflow:var(--slideo);opacity:0;z-index:0;transition:opacity var(--dur);width:var(--slidew);height:var(--slideh);box-sizing:border-box;background-repeat:no-repeat;background-attachment:scroll;background-position:center;background-size:var(--slidef);background-color:transparent}.slidy-ul li img{width:100%;height:100%;display:block;pointer-events:none;-o-object-fit:var(--slidef);object-fit:var(--slidef)}.slidy.autowidth .slidy-ul li img{width:auto}.slidy.svelte-o9i0eo button.svelte-o9i0eo.svelte-o9i0eo{margin:0;border:0;padding:0;border-radius:0;width:50px;height:50px;line-height:50px;color:white;background-color:rgba(0, 0, 0, 0.09);cursor:pointer;outline:0;overflow:hidden;display:flex;align-items:center;justify-content:center}.slidy.svelte-o9i0eo button.svelte-o9i0eo.svelte-o9i0eo:active{outline:0}.slidy.svelte-o9i0eo li.active.svelte-o9i0eo.svelte-o9i0eo,.slidy.svelte-o9i0eo li.active button.svelte-o9i0eo.svelte-o9i0eo{color:red}.slidy-dots.svelte-o9i0eo.svelte-o9i0eo.svelte-o9i0eo{position:absolute;bottom:0;height:50px;padding:0;width:100%}.slidy.axisy.svelte-o9i0eo .slidy-dots.svelte-o9i0eo.svelte-o9i0eo{bottom:auto;right:0;width:50px;height:100%;flex-direction:column}.slidy-dots.svelte-o9i0eo li.svelte-o9i0eo.svelte-o9i0eo{display:flex;align-items:center;justify-content:center;flex-shrink:0}.slidy.axisy.svelte-o9i0eo .dots-arrow-left.svelte-o9i0eo.svelte-o9i0eo,.slidy.axisy.svelte-o9i0eo .dots-arrow-right.svelte-o9i0eo.svelte-o9i0eo{transform:rotate(90deg)}.slidy-dots.pure.svelte-o9i0eo li.svelte-o9i0eo.svelte-o9i0eo{width:32px;height:32px;background:none}.slidy-dots.pure.svelte-o9i0eo li button.svelte-o9i0eo.svelte-o9i0eo{border-radius:50%;color:red;width:12px;height:12px;transition:color var(--dur)}.slidy-dots.pure.svelte-o9i0eo li.active button.svelte-o9i0eo.svelte-o9i0eo{background:red}.arrow-left.svelte-o9i0eo.svelte-o9i0eo.svelte-o9i0eo,.dots-arrow-left.svelte-o9i0eo.svelte-o9i0eo.svelte-o9i0eo{left:0}.arrow-right.svelte-o9i0eo.svelte-o9i0eo.svelte-o9i0eo,.dots-arrow-right.svelte-o9i0eo.svelte-o9i0eo.svelte-o9i0eo{right:0}.arrow-right.svelte-o9i0eo.svelte-o9i0eo.svelte-o9i0eo,.arrow-left.svelte-o9i0eo.svelte-o9i0eo.svelte-o9i0eo{position:absolute}.slidy-dots.pure.svelte-o9i0eo .dots-arrow-left button.svelte-o9i0eo.svelte-o9i0eo,.slidy-dots.pure.svelte-o9i0eo .dots-arrow-right button.svelte-o9i0eo.svelte-o9i0eo{background:none;width:auto;height:auto}.dots-arrow-left.svelte-o9i0eo.svelte-o9i0eo.svelte-o9i0eo,.dots-arrow-right.svelte-o9i0eo.svelte-o9i0eo.svelte-o9i0eo{width:50px;height:50px}",
-      map: null
-    };
-    Slidy = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let axisy;
-      let move;
-      let { slides = [], key: key2 = (item2) => item2.id || item2[slide.imgsrckey], wrap = {
-        id: null,
-        width: "100%",
-        height: "50%",
-        padding: "0",
-        align: "middle",
-        alignmargin: 0
-      }, slide = {
-        gap: 0,
-        class: "",
-        width: "50%",
-        height: "100%",
-        backimg: false,
-        imgsrckey: "src",
-        objectfit: "cover",
-        overflow: "hidden"
-      }, controls = {
-        dots: true,
-        dotsnum: true,
-        dotsarrow: true,
-        dotspure: false,
-        arrows: true,
-        keys: true,
-        drag: true,
-        wheel: true
-      }, options = {
-        axis: "x",
-        loop: true,
-        duration: 450,
-        sensity: 0.3
-      }, index = 4, init: init2 = true, timeout = 0 } = $$props;
-      let render = false;
-      function slidyInit() {
-        slides = dots = slides.map((s3, i2) => __spreadValues({ ix: i2 }, s3));
-        timeout > 0 ? setTimeout(() => init2 = true, timeout) : init2 = init2;
-      }
-      let nodes = [], dots = [], el = {}, aix = 0;
-      function slidySizes() {
-        if (render) {
-          aix = options.loop ? Math.floor(slides.length / 2) : index;
-          el = {
-            active: {
-              ix: slides[aix].ix,
-              width: nodes[aix].offsetWidth + slide.gap,
-              height: nodes[aix].offsetHeight + slide.gap
-            },
-            first: {
-              width: nodes[0].offsetWidth + slide.gap,
-              height: nodes[0].offsetHeight + slide.gap
-            },
-            last: {
-              width: nodes[slides.length - 1].offsetWidth + slide.gap,
-              height: nodes[slides.length - 1].offsetHeight + slide.gap
-            },
-            before: {
-              width: nodes.map((a, i2) => i2 < index ? a.offsetWidth + slide.gap : null).reduce((p, v) => p + v),
-              height: nodes.map((a, i2) => i2 < index ? a.offsetHeight + slide.gap : null).reduce((p, v) => p + v)
-            },
-            after: {
-              width: nodes.map((a, i2) => i2 > index ? a.offsetWidth + slide.gap : null).reduce((p, v) => p + v),
-              height: nodes.map((a, i2) => i2 > index ? a.offsetHeight + slide.gap : null).reduce((p, v) => p + v)
-            }
-          };
-        }
-      }
-      let size = {}, diff = {};
-      function slidyMatch() {
-        if (render) {
-          size = {
-            first: axisy ? el.first.height : el.first.width,
-            last: axisy ? el.last.height : el.last.width,
-            active: axisy ? el.active.height : el.active.width,
-            before: axisy ? el.before.height : el.before.width,
-            after: axisy ? el.after.height : el.after.width,
-            wrap: axisy ? wh : ww
-          };
-          diff = {
-            align: (size.wrap - size.active + slide.gap) / 2 - wrap.alignmargin,
-            pos: (size.before - size.after) / 2 - pos
-          };
-        }
-      }
-      let ww, wh;
-      let pos = 0, comp = 0, translate = 0, transition = options.duration;
-      function prev() {
-        slides = [slides[slides.length - 1], ...slides.slice(0, -1)];
-      }
-      function next() {
-        slides = [...slides.slice(1), slides[0]];
-      }
-      let ix = index;
-      function slidyIndex(id) {
-        while (ix > id) {
-          transition = options.duration;
-          if (options.loop) {
-            pos += size.last;
-            comp = -pos;
-            prev();
-          }
-          ix--;
-        }
-        while (ix < id) {
-          transition = options.duration;
-          if (options.loop) {
-            pos -= size.first;
-            comp = -pos;
-            next();
-          }
-          ix++;
-        }
-      }
-      if ($$props.slides === void 0 && $$bindings.slides && slides !== void 0)
-        $$bindings.slides(slides);
-      if ($$props.key === void 0 && $$bindings.key && key2 !== void 0)
-        $$bindings.key(key2);
-      if ($$props.wrap === void 0 && $$bindings.wrap && wrap !== void 0)
-        $$bindings.wrap(wrap);
-      if ($$props.slide === void 0 && $$bindings.slide && slide !== void 0)
-        $$bindings.slide(slide);
-      if ($$props.controls === void 0 && $$bindings.controls && controls !== void 0)
-        $$bindings.controls(controls);
-      if ($$props.options === void 0 && $$bindings.options && options !== void 0)
-        $$bindings.options(options);
-      if ($$props.index === void 0 && $$bindings.index && index !== void 0)
-        $$bindings.index(index);
-      if ($$props.init === void 0 && $$bindings.init && init2 !== void 0)
-        $$bindings.init(init2);
-      if ($$props.timeout === void 0 && $$bindings.timeout && timeout !== void 0)
-        $$bindings.timeout(timeout);
-      $$result.css.add(css$1);
-      nodes = nodes.filter(Boolean);
-      {
-        tick().then(() => {
-          render = nodes.length !== 0 && slides.length !== 0 && nodes.length === slides.length;
-        });
-      }
-      {
-        slidyInit();
-      }
-      {
-        if (render) {
-          tick().then(() => {
-            if (index < 0) {
-              index = options.loop ? ix = slides.length - 1 : 0;
-            } else if (index > slides.length - 1) {
-              index = options.loop ? ix = 0 : slides.length - 1;
-            }
-          });
-        }
-      }
-      render && tick().then(() => slidySizes());
-      axisy = options.axis === "y";
-      render && tick().then(() => slidyMatch());
-      {
-        if (render) {
-          tick().then(() => {
-            if (wrap.align === "end") {
-              translate = slides.length % 2 === 0 ? options.loop ? pos + diff.align - size.active / 2 : -diff.pos + diff.align : options.loop ? pos + diff.align : -diff.pos + diff.align;
-            } else if (wrap.align === "start") {
-              translate = slides.length % 2 === 0 ? options.loop ? pos - diff.align - size.active / 2 : -diff.pos - diff.align : options.loop ? pos - diff.align : -diff.pos - diff.align;
-            } else {
-              translate = slides.length % 2 === 0 ? options.loop ? pos - size.active / 2 : -diff.pos : options.loop ? pos : -diff.pos;
-            }
-          });
-        }
-      }
-      move = () => {
-        if (axisy) {
-          return `transform: translate(0, ${translate}px); top: ${comp}px; transition: transform ${transition}ms;`;
-        } else {
-          return `transform: translate(${translate}px, 0); left: ${comp}px; transition: transform ${transition}ms;`;
-        }
-      };
-      init2 && slidyIndex(index);
-      return `
-
-<section tabindex="${"0"}" aria-label="${"Slidy"}"${add_attribute("id", wrap.id, 0)} class="${[
-        "slidy svelte-o9i0eo",
-        (init2 ? "loaded" : "") + " " + (axisy ? "axisy" : "") + " " + (slide.width === "auto" ? "autowidth" : "") + " " + (options.loop === false ? "antiloop" : "") + " " + (wrap.align === "middle" ? "alignmiddle" : "") + " " + (wrap.align === "start" ? "alignstart" : "") + " " + (wrap.align === "end" ? "alignend" : "")
-      ].join(" ").trim()}" style="${"--wrapw: " + escape(wrap.width) + "; --wraph: " + escape(wrap.height) + "; --wrapp: " + escape(wrap.padding) + "; --slidew: " + escape(slide.width) + "; --slideh: " + escape(slide.height) + "; --slidef: " + escape(slide.objectfit) + "; --slideo: " + escape(slide.overflow) + "; --slideg: " + escape(axisy ? `${slide.gap}px 0 0 0` : `0 0 0 ${slide.gap}px`) + "; --dur: " + escape(options.duration) + "ms;"}">${!init2 ? `<section id="${"loader"}" class="${"svelte-o9i0eo"}">${slots.loader ? slots.loader({ item }) : `Loading...`}</section>` : ``}
-
-    <ul class="${"slidy-ul svelte-o9i0eo"}"${add_attribute("style", move(), 0)}>${slides ? `${each(slides, (item2, i2) => {
-        return `<li${add_attribute("data-id", item2.ix, 0)} class="${[
-          escape(null_to_empty(slide.class)) + " svelte-o9i0eo",
-          item2.ix === index ? "active" : ""
-        ].join(" ").trim()}"${add_attribute("style", slide.backimg === true ? `background-image: url(${item2[slide.imgsrckey]})` : null, 0)}${add_attribute("this", nodes[i2], 0)}>${slots.default ? slots.default({ item: item2 }) : `
-                        ${!slide.backimg ? `<img${add_attribute("alt", item2[slide.imgsrckey], 0)}${add_attribute("src", item2[slide.imgsrckey], 0)}${add_attribute("width", item2.width, 0)}${add_attribute("height", item2.height, 0)}>` : ``}
-                    `}
-                </li>`;
-      })}` : ``}</ul>
-
-    ${controls.arrows && init2 ? `${!options.loop ? `${index > 0 ? `<button class="${"arrow-left svelte-o9i0eo"}">${slots["arrow-left"] ? slots["arrow-left"]({ item }) : `\u2190`}</button>` : ``}
-            ${index < slides.length - 1 ? `<button class="${"arrow-right svelte-o9i0eo"}">${slots["arrow-right"] ? slots["arrow-right"]({ item }) : `\u2192`}</button>` : ``}` : `<button class="${"arrow-left svelte-o9i0eo"}">${slots["arrow-left"] ? slots["arrow-left"]({ item }) : `\u2190`}</button>
-            <button class="${"arrow-right svelte-o9i0eo"}">${slots["arrow-right"] ? slots["arrow-right"]({ item }) : `\u2192`}</button>`}` : ``}
-    ${controls.dots && init2 ? `<ul class="${["slidy-dots svelte-o9i0eo", controls.dotspure ? "pure" : ""].join(" ").trim()}">${controls.dotsarrow ? `${!options.loop ? `${index > 0 ? `<li class="${"dots-arrow-left svelte-o9i0eo"}">${slots["dots-arrow-left"] ? slots["dots-arrow-left"]({ item }) : `<button class="${"svelte-o9i0eo"}">\u2190</button>`}</li>` : ``}` : `<li class="${"dots-arrow-left svelte-o9i0eo"}">${slots["dots-arrow-left"] ? slots["dots-arrow-left"]({ item }) : `<button class="${"svelte-o9i0eo"}">\u2190</button>`}</li>`}` : ``}
-            ${each(dots, (dot, i2) => {
-        return `<li class="${["svelte-o9i0eo", i2 === index ? "active" : ""].join(" ").trim()}">${slots.dot ? slots.dot({ dot, item }) : `
-                        <button class="${"svelte-o9i0eo"}">${escape(controls.dotsnum && !controls.dotspure ? i2 : "")}</button>
-                    `}
-                </li>`;
-      })}
-            ${controls.dotsarrow ? `${!options.loop ? `${index < slides.length - 1 ? `<li class="${"dots-arrow-right svelte-o9i0eo"}">${slots["dots-arrow-right"] ? slots["dots-arrow-right"]({ item }) : `<button class="${"svelte-o9i0eo"}">\u2192</button>`}</li>` : ``}` : `<li class="${"dots-arrow-right svelte-o9i0eo"}">${slots["dots-arrow-right"] ? slots["dots-arrow-right"]({ item }) : `<button class="${"svelte-o9i0eo"}">\u2192</button>`}</li>`}` : ``}</ul>` : ``}
-</section>`;
-    });
+    init_Footer_d37f1bf0();
+    init_stores_5eed77e0();
     css4 = {
       code: '"project_slidy" :global(.arrow-left){background-color:red}.arrow-left{background-color:red}',
       map: null
@@ -6315,38 +6093,6 @@ var init_projects_svelte = __esm({
       let { image = bg_img2 } = $$props;
       let { number = 1 } = $$props;
       let { slides = [] } = $$props;
-      const options = {
-        slides: [],
-        wrap: {
-          id: "project_slidy",
-          width: "100%",
-          height: "100%",
-          padding: "0",
-          align: "middle",
-          alignmargin: 50
-        },
-        slide: {
-          gap: 20,
-          class: "",
-          width: "100%",
-          height: "100%",
-          backimg: true,
-          imgsrckey: "guid",
-          objectfit: "cover",
-          overflow: "hidden"
-        },
-        controls: {
-          dots: true,
-          dotsnum: false,
-          dotsarrow: false,
-          dotspure: true,
-          arrows: true,
-          keys: false,
-          drag: true,
-          wheel: true
-        },
-        options: { axis: "x", loop: false, duration: 550 }
-      };
       if ($$props.id === void 0 && $$bindings.id && id !== void 0)
         $$bindings.id(id);
       if ($$props.title === void 0 && $$bindings.title && title !== void 0)
@@ -6364,14 +6110,7 @@ var init_projects_svelte = __esm({
     <div class="${"md:pr-1 pl-1"}"><div class="${"md:h-12 h-8 md:border-r-2 md:border-l-0 border-l-2 border-white"}"></div></div></div>
 
   <div class="${"aspect-video w-full relative overflow-hidden"}">
-    ${validate_component(Slidy, "Slidy").$$render($$result, Object.assign(options, { slides }), {}, {
-        "arrow-right": () => {
-          return `<button slot="${"arrow-right"}" class="${"btn bg-red-600 bg-opacity-70 border-none"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-6 w-6"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke="${"currentColor"}" stroke-width="${"2"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M14 5l7 7m0 0l-7 7m7-7H3"}"></path></svg></button>`;
-        },
-        "arrow-left": () => {
-          return `<button slot="${"arrow-left"}" class="${"btn bg-red-600 bg-opacity-70 border-none"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-6 w-6"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke="${"currentColor"}" stroke-width="${"2"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M10 19l-7-7m0 0l7-7m-7 7h18"}"></path></svg></button>`;
-        }
-      })}</div>
+    ${``}</div>
 </li>`;
     });
     Projects = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -6427,16 +6166,17 @@ ${validate_component(PageAnim, "PageAnim").$$render($$result, {}, {}, {
           })}
 
   <div class="${"w-full px-6 bg-stone-900 pb-36"}"><div class="${"xl:flex xl:gap-4 md:px-8"}"><div class="${"max-w-screen-lg mx-auto py-8"}">
+        
 
         ${validate_component(Carousel, "Carousel").$$render($$result, { name: "project", items }, {}, {})}
 
         <div class="${"flex w-full mx-auto -mt-40"}">${-1 < getPrev("project", $page.url.hash) ? `<a href="${"#" + escape(prevurl("project", $page.url.hash))}"><button class="${"py-4 px-2 text-white"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-12 w-12"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke="${"currentColor"}" stroke-width="${"2"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M10 19l-7-7m0 0l7-7m-7 7h18"}"></path></svg></button></a>` : ``}
             ${projects.length > getNext("project", $page.url.hash) ? `<a href="${"#" + escape(nexturl("project", $page.url.hash)) + " "}"><button class="${"py-4 px-2 text-white"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-12 w-12"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke="${"currentColor"}" stroke-width="${"2"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M14 5l7 7m0 0l-7 7m7-7H3"}"></path></svg></button></a>` : ``}</div></div>
-      <ul class="${"text-xs hidden xl:block w-2/12 text-stone-400 pt-32 text-right"}">${each(projects, (item2, i2) => {
+      <ul class="${"text-xs hidden xl:block w-2/12 text-stone-400 pt-32 text-right"}">${each(projects, (item, i2) => {
             return `<li class="${[
               "hover:text-stone-300 mb-1",
               `#${getItemId("project", i2)}` === $page.url.hash ? "text-white" : ""
-            ].join(" ").trim()}"><a href="${"#" + escape(getItemId("project", i2))}">${escape(item2.title.rendered)}</a>
+            ].join(" ").trim()}"><a href="${"#" + escape(getItemId("project", i2))}">${escape(item.title.rendered)}</a>
           </li>`;
           })}</ul></div></div>
 
@@ -6459,9 +6199,9 @@ var entry3, js3, css5;
 var init__3 = __esm({
   ".svelte-kit/output/server/nodes/3.js"() {
     init_projects_svelte();
-    entry3 = "pages/projects.svelte-4ea1c2d9.js";
-    js3 = ["pages/projects.svelte-4ea1c2d9.js", "chunks/vendor-9e53104a.js", "chunks/Header-5b8a7d25.js", "chunks/sacred-heart-college-01-e738c59a.js", "chunks/PageAnim-65fe9f02.js", "chunks/stores-2666f07b.js"];
-    css5 = ["assets/pages/projects.svelte-73cb8d6f.css", "assets/Carousel.svelte_svelte_type_style_lang-15ba052b.css", "assets/vendor-eb1b8b61.css"];
+    entry3 = "pages/projects.svelte-46d8823f.js";
+    js3 = ["pages/projects.svelte-46d8823f.js", "chunks/vendor-b0c17138.js", "chunks/Header-de629f2f.js", "chunks/Carousel-b944f413.js", "chunks/sacred-heart-college-01-e738c59a.js", "chunks/Footer-21dfc7ec.js", "chunks/stores-94e7840b.js"];
+    css5 = ["assets/pages/projects.svelte-73cb8d6f.css", "assets/vendor-eb1b8b61.css", "assets/Carousel-421d1739.css"];
   }
 });
 
@@ -6483,13 +6223,14 @@ function getPrev2(name, hash2) {
 var ServiceCard, Services;
 var init_services_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/services.svelte.js"() {
-    init_index_227ab1fb();
-    init_Header_c341ab16();
-    init_PageAnim_d6943d34();
-    init_stores_3a4a2cf8();
+    init_index_03b14502();
+    init_Header_42a253c3();
+    init_Carousel_5c842695();
+    init_Footer_d37f1bf0();
+    init_stores_5eed77e0();
     ServiceCard = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { id = "" } = $$props;
-      let { item: item2 } = $$props;
+      let { item } = $$props;
       let { number = 1 } = $$props;
       let { content = ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia soluta quas
         aperiam sit ipsum magni error blanditiis exercitationem esse dolores, sed
@@ -6500,8 +6241,8 @@ var init_services_svelte = __esm({
       console.log(fimg_url);
       if ($$props.id === void 0 && $$bindings.id && id !== void 0)
         $$bindings.id(id);
-      if ($$props.item === void 0 && $$bindings.item && item2 !== void 0)
-        $$bindings.item(item2);
+      if ($$props.item === void 0 && $$bindings.item && item !== void 0)
+        $$bindings.item(item);
       if ($$props.number === void 0 && $$bindings.number && number !== void 0)
         $$bindings.number(number);
       if ($$props.content === void 0 && $$bindings.content && content !== void 0)
@@ -6593,9 +6334,257 @@ var entry4, js4, css6;
 var init__4 = __esm({
   ".svelte-kit/output/server/nodes/4.js"() {
     init_services_svelte();
-    entry4 = "pages/services.svelte-b7895b92.js";
-    js4 = ["pages/services.svelte-b7895b92.js", "chunks/vendor-9e53104a.js", "chunks/Header-5b8a7d25.js", "chunks/PageAnim-65fe9f02.js", "chunks/stores-2666f07b.js"];
-    css6 = ["assets/Carousel.svelte_svelte_type_style_lang-15ba052b.css", "assets/vendor-eb1b8b61.css"];
+    entry4 = "pages/services.svelte-5e333f0d.js";
+    js4 = ["pages/services.svelte-5e333f0d.js", "chunks/vendor-b0c17138.js", "chunks/Header-de629f2f.js", "chunks/Carousel-b944f413.js", "chunks/Footer-21dfc7ec.js", "chunks/stores-94e7840b.js"];
+    css6 = ["assets/vendor-eb1b8b61.css", "assets/Carousel-421d1739.css"];
+  }
+});
+
+// .svelte-kit/output/server/chunks/env-14926626.js
+var browser, dev;
+var init_env_14926626 = __esm({
+  ".svelte-kit/output/server/chunks/env-14926626.js"() {
+    browser = false;
+    dev = false;
+  }
+});
+
+// .svelte-kit/output/server/chunks/TextBlock-8095b5a2.js
+var Heading, TextBlock;
+var init_TextBlock_8095b5a2 = __esm({
+  ".svelte-kit/output/server/chunks/TextBlock-8095b5a2.js"() {
+    init_index_03b14502();
+    Heading = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      return `<div class="${"pr-10 pt-2 mb-4"}"><div class="${"md:pr-1 pl-1"}"><div class="${"h-20 md:border-r-2 md:border-l-0 border-l-2 border-red-600"}"></div></div>
+  <div class="${"font-gotham font-bold text-stone-800 text-4xl md:text-right py-2"}">${slots.default ? slots.default({}) : ``}</div>
+  <div class="${"md:pr-1 pl-1"}"><div class="${"md:h-20 h-8 md:border-r-2 md:border-l-0 border-l-2 border-red-600"}"></div></div></div>`;
+    });
+    TextBlock = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      return `<div class="${"w-full py-10 "}"><div class="${"container max-w-screen-lg relative flex flex-col md:flex-row"}"><div class="${"md:w-1/3 w-full"}">${validate_component(Heading, "Heading").$$render($$result, {}, {}, {
+        default: () => {
+          return `${slots.heading ? slots.heading({}) : ``}`;
+        }
+      })}</div>
+    <div class="${"md:w-2/3 w-full font-gotham text-lg text-stone-900 prose"}">${slots.content ? slots.content({}) : ``}</div></div></div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/chunks/CarouselNav-8bab95ad.js
+function getPrev3(name, hash2) {
+  let a = hash2.split("-");
+  let i2 = a[a.length - 1];
+  i2 = +i2;
+  i2 = i2 - 1;
+  return i2;
+}
+var CarouselNav;
+var init_CarouselNav_8bab95ad = __esm({
+  ".svelte-kit/output/server/chunks/CarouselNav-8bab95ad.js"() {
+    init_index_03b14502();
+    init_stores_5eed77e0();
+    init_Carousel_5c842695();
+    CarouselNav = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $page, $$unsubscribe_page;
+      $$unsubscribe_page = subscribe(page, (value) => $page = value);
+      let hashes = {};
+      createEventDispatcher();
+      let { items = [] } = $$props;
+      let { name = "" } = $$props;
+      function getNext(name2, hash2) {
+        let a = hash2.split("-");
+        if (a[0] === `#${name2}`) {
+          hashes[a[0].substring(1)] = $page.url.hash;
+        }
+        if (a[0] !== `#${name2}` && hash2 !== "")
+          return 1;
+        let i2 = a[a.length - 1];
+        i2 = +i2;
+        i2 = i2 + 1;
+        return i2;
+      }
+      let index = 0;
+      console.log(getPrev3(name, $page.url.hash), getNext(name, $page.url.hash));
+      if ($$props.items === void 0 && $$bindings.items && items !== void 0)
+        $$bindings.items(items);
+      if ($$props.name === void 0 && $$bindings.name && name !== void 0)
+        $$bindings.name(name);
+      $$unsubscribe_page();
+      return `${``}
+${index < items.length - 1 ? `<a>${slots.next ? slots.next({}) : ``}</a>` : ``}`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/about.svelte.js
+var about_svelte_exports = {};
+__export(about_svelte_exports, {
+  default: () => About,
+  hydrate: () => hydrate,
+  router: () => router
+});
+var HeadingTwo, TextImageBlock, ObjectivesCard, hydrate, router, About;
+var init_about_svelte = __esm({
+  ".svelte-kit/output/server/entries/pages/about.svelte.js"() {
+    init_index_03b14502();
+    init_env_14926626();
+    init_Header_42a253c3();
+    init_Footer_d37f1bf0();
+    init_TextBlock_8095b5a2();
+    init_Carousel_5c842695();
+    init_stores_5eed77e0();
+    init_CarouselNav_8bab95ad();
+    HeadingTwo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      return `<div class="${"pr-10 pt-2 mb-4"}"><div class="${"pl-1"}"><div class="${"h-12 border-l-2 border-red-600"}"></div></div>
+  <div class="${"font-gotham font-bold text-gray-800 text-3xl py-2"}">${slots.default ? slots.default({}) : ``}</div>
+  <div class="${"md:pr-1 pl-1"}"><div class="${"h-8 border-l-2 border-red-600"}"></div></div></div>`;
+    });
+    TextImageBlock = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      return `<div class="${"w-full py-10"}"><div class="${"container max-w-screen-lg relative flex flex-col md:flex-row"}"><div class="${"md:w-1/2 w-full md:pr-10 flex items-center"}"><img${add_attribute("src", bg_img, 0)} alt="${""}"></div>
+    <div class="${"md:w-1/2 w-full font-gotham text-gray-800"}">${validate_component(HeadingTwo, "HeadingTwo").$$render($$result, {}, {}, {
+        default: () => {
+          return `${slots.heading ? slots.heading({}) : ``}`;
+        }
+      })}
+      ${slots.content ? slots.content({}) : ``}</div></div></div>`;
+    });
+    ObjectivesCard = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { id = "" } = $$props;
+      let { item } = $$props;
+      let { number = 1 } = $$props;
+      let { content } = $$props;
+      if ($$props.id === void 0 && $$bindings.id && id !== void 0)
+        $$bindings.id(id);
+      if ($$props.item === void 0 && $$bindings.item && item !== void 0)
+        $$bindings.item(item);
+      if ($$props.number === void 0 && $$bindings.number && number !== void 0)
+        $$bindings.number(number);
+      if ($$props.content === void 0 && $$bindings.content && content !== void 0)
+        $$bindings.content(content);
+      return `<li${add_attribute("id", id, 0)} class="${"w-3/4 flex shrink-0 snap-center py-10 h-screen items-center"}"><div class="${"flex"}"><span class="${"font-gotham font-black md:text-8xl text-5xl text-gray-300"}">${number < 10 ? `0` : ``}${escape(number)}</span>
+    <div class="${"h-full pt-0 pb-0 md:px-6 px-2"}"><div class="${"h-full border-r-2 border-red-600"}"></div></div></div>
+  <div class="${""}"><div class="${"font-gotham font-medium text-gray-400 md:text-3xl text-xl pr-5 md:pr-20"}">${escape(content)}</div></div></li>`;
+    });
+    hydrate = dev;
+    router = browser;
+    About = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $page, $$unsubscribe_page;
+      $$unsubscribe_page = subscribe(page, (value) => $page = value);
+      let objectives = [
+        "To change the way clients think about the cost of having premium engineering designs prepared by highly trained experts by delivering premium designs at radically fair prices.",
+        "To provide a flexible, simplified and affordable engineering design process that makes clients confident that they have invested in a project that will continue to be beneficial for future generations.",
+        "To design simple and innovative technically viable engineering solutions responsive to clients' needs and an ever evolving environment.",
+        "To develop and uphold a reputation for excellence and always delivering projects on time.",
+        "To foster creativity in all processes and lead the industry in technical innovation"
+      ];
+      const items = objectives.map((props, i2) => ({
+        props: { content: props, number: i2 + 1 },
+        component: ObjectivesCard
+      }));
+      {
+        console.log($page.url);
+      }
+      $$unsubscribe_page();
+      return `${$$result.head += `${$$result.title = `<title>About</title>`, ""}`, ""}
+
+${validate_component(PageAnim, "PageAnim").$$render($$result, {}, {}, {
+        default: () => {
+          return `${validate_component(Header, "Header").$$render($$result, {}, {}, {
+            "sub-b": () => {
+              return `<span slot="${"sub-b"}">Our Mission</span>`;
+            },
+            heading: () => {
+              return `<span slot="${"heading"}">About us</span>`;
+            },
+            "sub-t": () => {
+              return `<span slot="${"sub-t"}">Our Approach</span>`;
+            },
+            number: () => {
+              return `<span slot="${"number"}">02</span>`;
+            }
+          })}
+  <div class="${"w-full min-h-screen flex items-center"}">${validate_component(TextBlock, "TextBlock").$$render($$result, {}, {}, {
+            content: () => {
+              return `<span slot="${"content"}"><p class="${"mb-8"}">MegaStruct Consulting Engineers (Private) Limited is a dynamic,
+          innovative and steadily growing Zimbabwean engineering consultancy
+          operating under the Zimbabwean Company Laws. We are a locally owned
+          and committed to maintaining a diverse and highly skilled team that
+          provides timely and professional services of the highest standards.
+          Our expertise lies in the following sectors: civil engineering;
+          structural engineering; water and wastewater treatment and
+          reticulation; and construction management.
+        </p>
+        <p>We collaborate with clients to design and implement superior and
+          durable solutions that draw on out past successes to meet all civil
+          and structural engineering needs. We develop solutions within client
+          budgets without compromising on quality and provide project management
+          services from initiation to completion. The MegaStruct guarantee is
+          that we produce remarkable results within deadlines through
+          cost-effective and viable design solutions and economical construction
+          methods that adhere to current construction codes and specifications.
+        </p></span>`;
+            },
+            heading: () => {
+              return `<span slot="${"heading"}">Who we are </span>`;
+            }
+          })}</div>
+  <div class="${"w-full min-h-screen flex items-center bg-stone-200"}">${validate_component(TextImageBlock, "TextImageBlock").$$render($$result, {}, {}, {
+            content: () => {
+              return `<span slot="${"content"}"><p>MegaStruct leverages cutting edge engineering and technical theory to
+          provide clients with the latest in innovative, cost effective and
+          sustainable design solutions. Our highly trained and professionally
+          registered staff members are experienced to cover all aspects of
+          engineering and project management. We use our years of engineering
+          experience to manage and execute complex projects in challenging
+          environments. These include; roads, water and sewer reticulation,
+          bridges, dams, water reservoirs, and sewage treatment plants.
+        </p></span>`;
+            },
+            heading: () => {
+              return `<span slot="${"heading"}">Our Approach</span>`;
+            }
+          })}</div>
+  <div class="${"w-full min-h-screen flex flex-col justify-center"}"><div class="${"flex w-3/4 mx-auto -mb-60"}">
+      ${validate_component(HeadingTwo, "HeadingTwo").$$render($$result, {}, {}, {
+            default: () => {
+              return `Our Objectives`;
+            }
+          })}</div>
+    ${validate_component(Carousel, "Carousel").$$render($$result, { name: "objectives", items }, {}, {})}
+
+    
+    <div class="${"flex w-3/4 mx-auto -mt-60 pt-20 relative z-30"}">${validate_component(CarouselNav, "CarouselNav").$$render($$result, { name: "objectives", items }, {}, {
+            next: () => {
+              return `<button slot="${"next"}" class="${"py-4 px-2 text-red-600"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-12 w-12"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke="${"currentColor"}" stroke-width="${"2"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M14 5l7 7m0 0l-7 7m7-7H3"}"></path></svg></button>`;
+            },
+            previous: () => {
+              return `<button slot="${"previous"}" class="${"py-4 px-2 text-red-600"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-12 w-12"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke="${"currentColor"}" stroke-width="${"2"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M10 19l-7-7m0 0l7-7m-7 7h18"}"></path></svg></button>`;
+            }
+          })}
+
+      </div></div>
+  ${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}`;
+        }
+      })}`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/6.js
+var __exports5 = {};
+__export(__exports5, {
+  css: () => css7,
+  entry: () => entry5,
+  js: () => js5,
+  module: () => about_svelte_exports
+});
+var entry5, js5, css7;
+var init__5 = __esm({
+  ".svelte-kit/output/server/nodes/6.js"() {
+    init_about_svelte();
+    entry5 = "pages/about.svelte-bd55673f.js";
+    js5 = ["pages/about.svelte-bd55673f.js", "chunks/vendor-b0c17138.js", "chunks/env-859c48a7.js", "chunks/Header-de629f2f.js", "chunks/Footer-21dfc7ec.js", "chunks/TextBlock-0abfbc2f.js", "chunks/Carousel-b944f413.js", "chunks/stores-94e7840b.js", "chunks/CarouselNav-d726ec56.js"];
+    css7 = ["assets/vendor-eb1b8b61.css", "assets/Carousel-421d1739.css"];
   }
 });
 
@@ -6605,9 +6594,9 @@ __export(team_svelte_exports, {
   default: () => Team
 });
 function prevurl3(name, hash2) {
-  return `${name}-item-${getPrev3(name, hash2)}`;
+  return `${name}-item-${getPrev4(name, hash2)}`;
 }
-function getPrev3(name, hash2) {
+function getPrev4(name, hash2) {
   let a = hash2.split("-");
   let i2 = a[a.length - 1];
   i2 = +i2;
@@ -6617,14 +6606,15 @@ function getPrev3(name, hash2) {
 var profile_blank, TeamCard, Team;
 var init_team_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/team.svelte.js"() {
-    init_index_227ab1fb();
-    init_Header_c341ab16();
-    init_PageAnim_d6943d34();
-    init_stores_3a4a2cf8();
+    init_index_03b14502();
+    init_Header_42a253c3();
+    init_Carousel_5c842695();
+    init_Footer_d37f1bf0();
+    init_stores_5eed77e0();
     profile_blank = "/_app/assets/profile_blank-bbb8a2d1.jpg";
     TeamCard = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { id = "" } = $$props;
-      let { item: item2 } = $$props;
+      let { item } = $$props;
       let { number = 1 } = $$props;
       let { content = ` Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia soluta quas
         aperiam sit ipsum magni error blanditiis exercitationem esse dolores, sed
@@ -6634,8 +6624,8 @@ var init_team_svelte = __esm({
       let { position } = $$props;
       if ($$props.id === void 0 && $$bindings.id && id !== void 0)
         $$bindings.id(id);
-      if ($$props.item === void 0 && $$bindings.item && item2 !== void 0)
-        $$bindings.item(item2);
+      if ($$props.item === void 0 && $$bindings.item && item !== void 0)
+        $$bindings.item(item);
       if ($$props.number === void 0 && $$bindings.number && number !== void 0)
         $$bindings.number(number);
       if ($$props.content === void 0 && $$bindings.content && content !== void 0)
@@ -6706,7 +6696,7 @@ ${validate_component(PageAnim, "PageAnim").$$render($$result, {}, {}, {
   <div class="${"w-full "}"><div class="${"mx-auto py-8"}">
       ${validate_component(Carousel, "Carousel").$$render($$result, { name: "team", items }, {}, {})}
 
-      <div class="${"flex w-3/4 mx-auto -mt-60 pt-20 px-5"}">${-1 < getPrev3("team", $page.url.hash) ? `<a href="${"#" + escape(prevurl3("team", $page.url.hash))}"><button class="${"py-4 px-2 text-red-600"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-12 w-12"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke="${"currentColor"}" stroke-width="${"2"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M10 19l-7-7m0 0l7-7m-7 7h18"}"></path></svg></button></a>` : ``}
+      <div class="${"flex w-3/4 mx-auto -mt-60 pt-20 px-5"}">${-1 < getPrev4("team", $page.url.hash) ? `<a href="${"#" + escape(prevurl3("team", $page.url.hash))}"><button class="${"py-4 px-2 text-red-600"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-12 w-12"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke="${"currentColor"}" stroke-width="${"2"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M10 19l-7-7m0 0l7-7m-7 7h18"}"></path></svg></button></a>` : ``}
           ${teams.length > getNext("team", $page.url.hash) ? `<a href="${"#" + escape(nexturl("team", $page.url.hash)) + " "}"><button class="${"py-4 px-2 text-red-600"}"><svg xmlns="${"http://www.w3.org/2000/svg"}" class="${"h-12 w-12"}" fill="${"none"}" viewBox="${"0 0 24 24"}" stroke="${"currentColor"}" stroke-width="${"2"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" d="${"M14 5l7 7m0 0l-7 7m7-7H3"}"></path></svg></button></a>` : ``}</div></div></div>
   ${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}`;
         }
@@ -6716,24 +6706,24 @@ ${validate_component(PageAnim, "PageAnim").$$render($$result, {}, {}, {
 });
 
 // .svelte-kit/output/server/nodes/7.js
-var __exports5 = {};
-__export(__exports5, {
-  css: () => css7,
-  entry: () => entry5,
-  js: () => js5,
+var __exports6 = {};
+__export(__exports6, {
+  css: () => css8,
+  entry: () => entry6,
+  js: () => js6,
   module: () => team_svelte_exports
 });
-var entry5, js5, css7;
-var init__5 = __esm({
+var entry6, js6, css8;
+var init__6 = __esm({
   ".svelte-kit/output/server/nodes/7.js"() {
     init_team_svelte();
-    entry5 = "pages/team.svelte-61f7b795.js";
-    js5 = ["pages/team.svelte-61f7b795.js", "chunks/vendor-9e53104a.js", "chunks/Header-5b8a7d25.js", "chunks/PageAnim-65fe9f02.js", "chunks/stores-2666f07b.js"];
-    css7 = ["assets/Carousel.svelte_svelte_type_style_lang-15ba052b.css", "assets/vendor-eb1b8b61.css"];
+    entry6 = "pages/team.svelte-c050738f.js";
+    js6 = ["pages/team.svelte-c050738f.js", "chunks/vendor-b0c17138.js", "chunks/Header-de629f2f.js", "chunks/Carousel-b944f413.js", "chunks/Footer-21dfc7ec.js", "chunks/stores-94e7840b.js"];
+    css8 = ["assets/vendor-eb1b8b61.css", "assets/Carousel-421d1739.css"];
   }
 });
 
-// .svelte-kit/output/server/chunks/_api-e095cc2e.js
+// .svelte-kit/output/server/chunks/_api-de4f5d46.js
 async function getJSON(event, resource, data) {
   const res = await fetch(`${base2}/${resource}`, {
     method: event.request.method,
@@ -6757,9 +6747,9 @@ async function getJSON(event, resource, data) {
   };
 }
 var BASE, base2;
-var init_api_e095cc2e = __esm({
-  ".svelte-kit/output/server/chunks/_api-e095cc2e.js"() {
-    BASE = "https://cms.megastruct.co.zw/wp-json";
+var init_api_de4f5d46 = __esm({
+  ".svelte-kit/output/server/chunks/_api-de4f5d46.js"() {
+    BASE = "https://www.megastruct.co.zw/cms/wp-json";
     base2 = BASE;
   }
 });
@@ -6772,7 +6762,7 @@ __export(projects_exports, {
 var get;
 var init_projects = __esm({
   ".svelte-kit/output/server/entries/endpoints/projects.js"() {
-    init_api_e095cc2e();
+    init_api_de4f5d46();
     get = async (request) => {
       const response = await getJSON(request, `wp/v2/project`);
       if (response.status === 404) {
@@ -6797,7 +6787,7 @@ __export(services_exports, {
 var get2;
 var init_services = __esm({
   ".svelte-kit/output/server/entries/endpoints/services.js"() {
-    init_api_e095cc2e();
+    init_api_de4f5d46();
     get2 = async (request) => {
       const response = await getJSON(request, `wp/v2/service`);
       if (response.status === 404) {
@@ -6822,7 +6812,7 @@ __export(team_exports, {
 var get3;
 var init_team = __esm({
   ".svelte-kit/output/server/entries/endpoints/team.js"() {
-    init_api_e095cc2e();
+    init_api_de4f5d46();
     get3 = async (request) => {
       const response = await getJSON(request, `wp/v2/team`);
       if (response.status === 404) {
@@ -6921,7 +6911,7 @@ async function setResponse(res, response) {
 }
 
 // .svelte-kit/output/server/index.js
-init_index_227ab1fb();
+init_index_03b14502();
 var import_cookie = __toESM(require_cookie(), 1);
 
 // node_modules/@lukeed/uuid/dist/index.mjs
@@ -7202,12 +7192,12 @@ function devalue(value) {
   }
   walk(value);
   var names = /* @__PURE__ */ new Map();
-  Array.from(counts).filter(function(entry6) {
-    return entry6[1] > 1;
+  Array.from(counts).filter(function(entry7) {
+    return entry7[1] > 1;
   }).sort(function(a, b) {
     return b[1] - a[1];
-  }).forEach(function(entry6, i2) {
-    names.set(entry6[0], getName(i2));
+  }).forEach(function(entry7, i2) {
+    names.set(entry7[0], getName(i2));
   });
   function stringify(thing) {
     if (names.has(thing)) {
@@ -7396,7 +7386,7 @@ function writable(value, start = noop3) {
       }
     }
   }
-  function update2(fn) {
+  function update(fn) {
     set(fn(value));
   }
   function subscribe2(run2, invalidate = noop3) {
@@ -7414,7 +7404,7 @@ function writable(value, start = noop3) {
       }
     };
   }
-  return { set, update: update2, subscribe: subscribe2 };
+  return { set, update, subscribe: subscribe2 };
 }
 function coalesce_to_error(err) {
   return err instanceof Error || err && err.name && err.message ? err : new Error(JSON.stringify(err));
@@ -7615,7 +7605,7 @@ var quoted = /* @__PURE__ */ new Set([
 ]);
 var crypto_pattern = /^(nonce|sha\d\d\d)-/;
 var Csp = class {
-  constructor({ mode, directives }, { dev, prerender, needs_nonce }) {
+  constructor({ mode, directives }, { dev: dev2, prerender, needs_nonce }) {
     __privateAdd2(this, _use_hashes, void 0);
     __privateAdd2(this, _dev, void 0);
     __privateAdd2(this, _script_needs_csp, void 0);
@@ -7624,10 +7614,10 @@ var Csp = class {
     __privateAdd2(this, _script_src, void 0);
     __privateAdd2(this, _style_src, void 0);
     __privateSet2(this, _use_hashes, mode === "hash" || mode === "auto" && prerender);
-    __privateSet2(this, _directives, dev ? __spreadValues({}, directives) : directives);
-    __privateSet2(this, _dev, dev);
+    __privateSet2(this, _directives, dev2 ? __spreadValues({}, directives) : directives);
+    __privateSet2(this, _dev, dev2);
     const d = __privateGet2(this, _directives);
-    if (dev) {
+    if (dev2) {
       const effective_style_src2 = d["style-src"] || d["default-src"];
       if (effective_style_src2 && !effective_style_src2.includes("unsafe-inline")) {
         d["style-src"] = [...effective_style_src2, "unsafe-inline"];
@@ -7638,7 +7628,7 @@ var Csp = class {
     const effective_script_src = d["script-src"] || d["default-src"];
     const effective_style_src = d["style-src"] || d["default-src"];
     __privateSet2(this, _script_needs_csp, !!effective_script_src && effective_script_src.filter((value) => value !== "unsafe-inline").length > 0);
-    __privateSet2(this, _style_needs_csp, !dev && !!effective_style_src && effective_style_src.filter((value) => value !== "unsafe-inline").length > 0);
+    __privateSet2(this, _style_needs_csp, !dev2 && !!effective_style_src && effective_style_src.filter((value) => value !== "unsafe-inline").length > 0);
     this.script_needs_nonce = __privateGet2(this, _script_needs_csp) && !__privateGet2(this, _use_hashes);
     this.style_needs_nonce = __privateGet2(this, _style_needs_csp) && !__privateGet2(this, _use_hashes);
     if (this.script_needs_nonce || this.style_needs_nonce || needs_nonce) {
@@ -8891,7 +8881,7 @@ var user_hooks = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProp
   __proto__: null,
   handle
 }, Symbol.toStringTag, { value: "Module" }));
-var template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<meta name="description" content="Svelte demo app" />\r\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\r\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\r\n		' + head + "\r\n	</head>\r\n	<body>\r\n		<div>" + body + "</div>\r\n	</body>\r\n</html>\r\n";
+var template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<meta name="description" content="Svelte demo app" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n		' + head + "\n	</head>\n	<body>\n		<div>" + body + "</div>\n	</body>\n</html>\n";
 var read = null;
 set_paths({ "base": "", "assets": "" });
 var get_hooks = (hooks) => ({
@@ -8949,13 +8939,14 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "fonts/gothamblack-webfont.woff", "fonts/gothamblack-webfont.woff2", "fonts/gothambold-webfont.woff", "fonts/gothambold-webfont.woff2", "fonts/gothambolditalic-webfont.woff", "fonts/gothambolditalic-webfont.woff2", "fonts/gothambook-webfont.woff", "fonts/gothambook-webfont.woff2", "fonts/gothambookitalic-webfont.woff", "fonts/gothambookitalic-webfont.woff2", "fonts/gothamlight-webfont.woff", "fonts/gothamlight-webfont.woff2", "fonts/gothamlightitalic-webfont.woff", "fonts/gothamlightitalic-webfont.woff2", "fonts/gothammedium-webfont.woff", "fonts/gothammedium-webfont.woff2", "fonts/gothammediumitalic-webfont.woff", "fonts/gothammediumitalic-webfont.woff2", "robots.txt"]),
   _: {
     mime: { ".png": "image/png", ".woff": "font/woff", ".woff2": "font/woff2", ".txt": "text/plain" },
-    entry: { "file": "start-d5cd763a.js", "js": ["start-d5cd763a.js", "chunks/vendor-9e53104a.js", "chunks/singletons-d1fb5791.js"], "css": ["assets/vendor-eb1b8b61.css"] },
+    entry: { "file": "start-da709318.js", "js": ["start-da709318.js", "chunks/vendor-b0c17138.js", "chunks/singletons-d1fb5791.js"], "css": ["assets/vendor-eb1b8b61.css"] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
       () => Promise.resolve().then(() => (init__3(), __exports3)),
       () => Promise.resolve().then(() => (init__4(), __exports4)),
-      () => Promise.resolve().then(() => (init__5(), __exports5))
+      () => Promise.resolve().then(() => (init__5(), __exports5)),
+      () => Promise.resolve().then(() => (init__6(), __exports6))
     ],
     routes: [
       {
@@ -8980,12 +8971,22 @@ var manifest = {
       },
       {
         type: "page",
+        key: "about",
+        pattern: /^\/about\/?$/,
+        params: null,
+        path: "/about",
+        shadow: null,
+        a: [0, 4],
+        b: [1]
+      },
+      {
+        type: "page",
         key: "team",
         pattern: /^\/team\/?$/,
         params: null,
         path: "/team",
         shadow: () => Promise.resolve().then(() => (init_team(), team_exports)),
-        a: [0, 4],
+        a: [0, 5],
         b: [1]
       }
     ]
