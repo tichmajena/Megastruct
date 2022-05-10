@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-da709318.js",
+    "file": "start-24493efb.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -19,7 +19,7 @@
     ]
   },
   "src/routes/__layout.svelte": {
-    "file": "pages/__layout.svelte-6e7f43da.js",
+    "file": "pages/__layout.svelte-47a60622.js",
     "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -52,7 +52,7 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-2d2a5298.js",
+    "file": "pages/index.svelte-fce2cd75.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -64,11 +64,12 @@
       "_stores-94e7840b.js",
       "_store-93a27462.js",
       "_Footer-21dfc7ec.js",
-      "_CarouselNav-d726ec56.js",
+      "_CarouselNav-4b598142.js",
       "_singletons-d1fb5791.js"
     ],
     "assets": [
       "assets/private-resident-3d61524a.jpg",
+      "assets/Civil Engineering-126eb7ab.jpeg",
       "assets/Constructio-d47fc416.jpg",
       "assets/megastruct_logo_white-a8b9bdc2.svg"
     ]
@@ -116,7 +117,7 @@
     ]
   },
   "src/routes/about.svelte": {
-    "file": "pages/about.svelte-bd55673f.js",
+    "file": "pages/about.svelte-cb903845.js",
     "src": "src/routes/about.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -128,7 +129,7 @@
       "_TextBlock-0abfbc2f.js",
       "_Carousel-b944f413.js",
       "_stores-94e7840b.js",
-      "_CarouselNav-d726ec56.js"
+      "_CarouselNav-4b598142.js"
     ]
   },
   "src/routes/team.svelte": {
@@ -199,8 +200,8 @@
       "assets/sacred-heart-college-01-3d7b399a.jpg"
     ]
   },
-  "_CarouselNav-d726ec56.js": {
-    "file": "chunks/CarouselNav-d726ec56.js",
+  "_CarouselNav-4b598142.js": {
+    "file": "chunks/CarouselNav-4b598142.js",
     "imports": [
       "_vendor-b0c17138.js",
       "_stores-94e7840b.js",

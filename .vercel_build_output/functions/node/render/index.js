@@ -5788,10 +5788,7 @@ var init_layout_svelte = __esm({
       $$unsubscribe_hide_menu = subscribe(hide_menu, (value) => $hide_menu = value);
       $$unsubscribe_page = subscribe(page, (value) => $page = value);
       $$unsubscribe_scroll_y = subscribe(scroll_y, (value) => value);
-      let { fixed = false } = $$props;
       let showMenu = false;
-      if ($$props.fixed === void 0 && $$bindings.fixed && fixed !== void 0)
-        $$bindings.fixed(fixed);
       {
         {
           if ($page.url.pathname === "/") {
@@ -5859,8 +5856,9 @@ var init_layout_svelte = __esm({
       <li><a sveltekit:prefetch href="${"/services"}">Services</a></li>
       <li><a sveltekit:prefetch href="${"/team"}">Team</a></li>
       <li><a sveltekit:prefetch href="${"/projects"}">Projects</a></li>
-      <li><a sveltekit:prefetch href="${"/contact"}">Contact</a></li></ul></div>
-</div>`;
+      <li><a sveltekit:prefetch href="${"/contact"}">Contact</a></li></ul></div></div>
+
+`;
     });
     _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `${validate_component(Nav, "Nav").$$render($$result, {}, {}, {
@@ -5885,8 +5883,8 @@ var entry, js, css;
 var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     init_layout_svelte();
-    entry = "pages/__layout.svelte-6e7f43da.js";
-    js = ["pages/__layout.svelte-6e7f43da.js", "chunks/vendor-b0c17138.js", "chunks/stores-94e7840b.js", "chunks/store-93a27462.js"];
+    entry = "pages/__layout.svelte-47a60622.js";
+    js = ["pages/__layout.svelte-47a60622.js", "chunks/vendor-b0c17138.js", "chunks/stores-94e7840b.js", "chunks/store-93a27462.js"];
     css = ["assets/pages/__layout.svelte-0dff1443.css", "assets/vendor-eb1b8b61.css"];
   }
 });
@@ -6370,7 +6368,7 @@ var init_TextBlock_8095b5a2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/CarouselNav-8bab95ad.js
+// .svelte-kit/output/server/chunks/CarouselNav-24360a45.js
 function getPrev3(name, hash2) {
   let a = hash2.split("-");
   let i2 = a[a.length - 1];
@@ -6379,8 +6377,8 @@ function getPrev3(name, hash2) {
   return i2;
 }
 var CarouselNav;
-var init_CarouselNav_8bab95ad = __esm({
-  ".svelte-kit/output/server/chunks/CarouselNav-8bab95ad.js"() {
+var init_CarouselNav_24360a45 = __esm({
+  ".svelte-kit/output/server/chunks/CarouselNav-24360a45.js"() {
     init_index_03b14502();
     init_stores_5eed77e0();
     init_Carousel_5c842695();
@@ -6411,7 +6409,7 @@ var init_CarouselNav_8bab95ad = __esm({
         $$bindings.name(name);
       $$unsubscribe_page();
       return `${``}
-${index < items.length - 1 ? `<a>${slots.next ? slots.next({}) : ``}</a>` : ``}`;
+${index < items.length - 1 ? `<a href="${"/"}">${slots.next ? slots.next({}) : ``}</a>` : ``}`;
     });
   }
 });
@@ -6433,7 +6431,7 @@ var init_about_svelte = __esm({
     init_TextBlock_8095b5a2();
     init_Carousel_5c842695();
     init_stores_5eed77e0();
-    init_CarouselNav_8bab95ad();
+    init_CarouselNav_24360a45();
     HeadingTwo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `<div class="${"pr-10 pt-2 mb-4"}"><div class="${"pl-1"}"><div class="${"h-12 border-l-2 border-red-600"}"></div></div>
   <div class="${"font-gotham font-bold text-gray-800 text-3xl py-2"}">${slots.default ? slots.default({}) : ``}</div>
@@ -6582,8 +6580,8 @@ var entry5, js5, css7;
 var init__5 = __esm({
   ".svelte-kit/output/server/nodes/6.js"() {
     init_about_svelte();
-    entry5 = "pages/about.svelte-bd55673f.js";
-    js5 = ["pages/about.svelte-bd55673f.js", "chunks/vendor-b0c17138.js", "chunks/env-859c48a7.js", "chunks/Header-de629f2f.js", "chunks/Footer-21dfc7ec.js", "chunks/TextBlock-0abfbc2f.js", "chunks/Carousel-b944f413.js", "chunks/stores-94e7840b.js", "chunks/CarouselNav-d726ec56.js"];
+    entry5 = "pages/about.svelte-cb903845.js";
+    js5 = ["pages/about.svelte-cb903845.js", "chunks/vendor-b0c17138.js", "chunks/env-859c48a7.js", "chunks/Header-de629f2f.js", "chunks/Footer-21dfc7ec.js", "chunks/TextBlock-0abfbc2f.js", "chunks/Carousel-b944f413.js", "chunks/stores-94e7840b.js", "chunks/CarouselNav-4b598142.js"];
     css7 = ["assets/vendor-eb1b8b61.css", "assets/Carousel-421d1739.css"];
   }
 });
@@ -8939,7 +8937,7 @@ var manifest = {
   assets: /* @__PURE__ */ new Set(["favicon.png", "fonts/gothamblack-webfont.woff", "fonts/gothamblack-webfont.woff2", "fonts/gothambold-webfont.woff", "fonts/gothambold-webfont.woff2", "fonts/gothambolditalic-webfont.woff", "fonts/gothambolditalic-webfont.woff2", "fonts/gothambook-webfont.woff", "fonts/gothambook-webfont.woff2", "fonts/gothambookitalic-webfont.woff", "fonts/gothambookitalic-webfont.woff2", "fonts/gothamlight-webfont.woff", "fonts/gothamlight-webfont.woff2", "fonts/gothamlightitalic-webfont.woff", "fonts/gothamlightitalic-webfont.woff2", "fonts/gothammedium-webfont.woff", "fonts/gothammedium-webfont.woff2", "fonts/gothammediumitalic-webfont.woff", "fonts/gothammediumitalic-webfont.woff2", "robots.txt"]),
   _: {
     mime: { ".png": "image/png", ".woff": "font/woff", ".woff2": "font/woff2", ".txt": "text/plain" },
-    entry: { "file": "start-da709318.js", "js": ["start-da709318.js", "chunks/vendor-b0c17138.js", "chunks/singletons-d1fb5791.js"], "css": ["assets/vendor-eb1b8b61.css"] },
+    entry: { "file": "start-24493efb.js", "js": ["start-24493efb.js", "chunks/vendor-b0c17138.js", "chunks/singletons-d1fb5791.js"], "css": ["assets/vendor-eb1b8b61.css"] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
