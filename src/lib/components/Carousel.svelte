@@ -29,14 +29,10 @@
 
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    console.log(`#${getNextId(name, i)}`);
-
     let element = document.querySelector(`#${getNextId(name, i)}`);
-    console.log(index, items.length - 1);
 
     if (index > items.length - 1 && loop === true) {
       //log
-      console.log("restarting");
       index = 0;
       i = 0;
       // clearInterval(autoscroll);
