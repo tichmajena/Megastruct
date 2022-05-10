@@ -12,7 +12,6 @@
     let a = hash.split("-");
 
     // if (a[0] !== `#${name}` && hash !== "" && hashes[name]) {
-    //   console.log(hashes[name], a[0], `#${name}`, hashes, name, hash);
     //   a = hashes[name].split("-");
     // }
 
@@ -52,12 +51,10 @@
     } else if (direction === "next") {
       index++;
     }
-    console.log(direction);
 
     let i = index;
 
     let element = document.querySelector(`#${getNextId(name, i)}`);
-    console.log(`#${getNextId(name, i)}`);
 
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     element.scrollIntoView({
@@ -66,17 +63,15 @@
   }
 
   //Phone  yangu yadzima
-
-  console.log(getPrev(name, $page.url.hash), getNext(name, $page.url.hash));
 </script>
 
 {#if index > 0}
-  <a href="/" on:click={() => scrolla("prev")}>
+  <a on:click={() => scrolla("prev")}>
     <slot name="previous" />
   </a>
 {/if}
 {#if index < items.length - 1}
-  <a href="/" on:click={() => scrolla("next")}>
+  <a on:click={() => scrolla("next")}>
     <slot name="next" />
   </a>
 {/if}
