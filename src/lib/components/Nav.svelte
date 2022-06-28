@@ -145,23 +145,50 @@
     <ul class="menu p-4 overflow-y-auto md:w-80 w-36 bg-red-700">
       <!-- Sidebar content here -->
 
-      <li><a on:click={toggleMenu} sveltekit:prefetch href="/">Home</a></li>
       <li>
-        <a on:click={toggleMenu} sveltekit:prefetch href="/about">About</a>
-      </li>
-      <li>
-        <a on:click={toggleMenu} sveltekit:prefetch href="/services">Services</a
+        <a class="bg-red-700" on:click={toggleMenu} sveltekit:prefetch href="/"
+          >Home</a
         >
       </li>
       <li>
-        <a on:click={toggleMenu} sveltekit:prefetch href="/team">Team</a>
-      </li>
-      <li>
-        <a on:click={toggleMenu} sveltekit:prefetch href="/projects">Projects</a
+        <a
+          class="bg-red-700"
+          on:click={toggleMenu}
+          sveltekit:prefetch
+          href="/about">About</a
         >
       </li>
       <li>
-        <a on:click={toggleMenu} sveltekit:prefetch href="/contact">Contact</a>
+        <a
+          class="bg-red-700"
+          on:click={toggleMenu}
+          sveltekit:prefetch
+          href="/services">Services</a
+        >
+      </li>
+      <li>
+        <a
+          class="bg-red-700"
+          on:click={toggleMenu}
+          sveltekit:prefetch
+          href="/team">Team</a
+        >
+      </li>
+      <li>
+        <a
+          class="bg-red-700"
+          on:click={toggleMenu}
+          sveltekit:prefetch
+          href="/projects">Projects</a
+        >
+      </li>
+      <li>
+        <a
+          class="bg-red-700"
+          on:click={toggleMenu}
+          sveltekit:prefetch
+          href="/contact">Contact</a
+        >
       </li>
     </ul>
   </div>
